@@ -1,7 +1,7 @@
-import { A, Outlet, useNavigate } from "@solidjs/router";
+import { A, useNavigate } from "@solidjs/router";
 import { onCleanup, onMount } from "solid-js";
 
-const Tags = () => {
+const Tags = (props) => {
   const navigate = useNavigate();
   let ref;
 
@@ -23,7 +23,7 @@ const Tags = () => {
     <div class="body is-article-visible">
       <main id="wrapper">
         <div id="main" ref={ref}>
-          <Outlet />
+          {props.children}
           <A href="/" title="Uždaryti">
             <div class="close" />
           </A>

@@ -1,7 +1,7 @@
-import { A, Outlet, useNavigate } from "@solidjs/router";
+import { A, useNavigate } from "@solidjs/router";
 import { onCleanup, onMount } from "solid-js";
 
-export default function Stories() {
+export default function Stories(props) {
   const navigate = useNavigate();
   let ref;
 
@@ -23,7 +23,7 @@ export default function Stories() {
     <div class="body is-article-visible">
       <main id="wrapper">
         <div id="main" ref={ref}>
-          <Outlet />
+          {props.children}
           <A href="/istorijos" title="Uždaryti">
             <div class="close" />
           </A>
