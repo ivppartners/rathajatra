@@ -1,6 +1,6 @@
 import { A } from "@solidjs/router";
-//import Youtube from "../components/youtube";
-import skelbimas from "../assets/images/skelbimas.png";
+import Youtube from "../components/youtube";
+//import skelbimas from "../assets/images/skelbimas.png";
 
 function Home() {
   return (
@@ -41,12 +41,11 @@ function Home() {
             </ul>
           </nav>
           <div class="youtube-container">
-            <img src={skelbimas} alt="" />
-            {/* <Youtube
+            <Youtube
               className="youtube"
-              src="https://www.youtube.com/embed/k6ooCyBghXg?start=16"
-              title="Rathajatra Vilnius, 2019"
-            /> */}
+              src="https://www.youtube.com/embed/qNhym8rVbgw?si=zqwhhfz-uIdj2ZIt"
+              title="Rathajatra Vilnius, 2024"
+            />
           </div>
         </header>
 

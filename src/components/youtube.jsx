@@ -7,6 +7,7 @@ const Youtube = ({ className, src, title }) => {
       src={src}
       frameBorder="0"
       allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+      referrerpolicy="strict-origin-when-cross-origin" 
       allowFullScreen
       title={title}
     ></iframe>

@@ -1780,3 +1780,9 @@ article a {
 article a:hover {
     color: inherit;
 }
+
+img.full-width {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
