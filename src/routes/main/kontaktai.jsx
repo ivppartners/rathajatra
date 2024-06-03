@@ -12,6 +12,8 @@ const Kontaktai = () => {
         <strong>Rašykite mums arba skambinkite:</strong>
         <br />
         Šatakula d.: satakula(eta)gmail.com, +370 670 69480
+        <br />
+        Vilniaus Hare Krišna centro svetainė internete - <a href="https://www.gauranga.lt" target="_blank" rel="noopener noreferrer">www.gauranga.lt</a>
       </p>
       <p>
         <strong>Arba ateikite pas mus:</strong>
