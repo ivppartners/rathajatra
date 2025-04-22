@@ -5,9 +5,7 @@ const Intro = () => {
   return (
     <article id="kas" >
       <h2 className="major">Šventė</h2>
-      <span className="image main">
-        <Youtube className="youtube-embed" src="https://www.youtube.com/embed/k6ooCyBghXg?start=16" title="Rathajatra Vilnius, 2019" />
-      </span>
+œ 
       <h3>Visatos Viešpaties vežimų šventė</h3>
       <p>
       Kviečiame Indijos mylėtojus, dvasingumo ir Absoliučios Tiesos ieškotojus, religijų vienytojus ir visus kitus smalsuolius į džiaugsmingą šventę, kurios giliausioji prasmė – pasodinti Džaganathą - pasaulio Viešpatį, visų religijų Viešpatį į savo širdies vežimą ir prieraišumo virvėmis nutempti jį į tikruosius sielos namus, kur nėra sielvarto, nerimo, baimės ir priešiškumo. Ši šventė daugialypė, nes nežinia, ar Dievas Pats mus veda į sąjungą su juo, ar mes pirmi pakviečiame Jį į susitikimą. Aišku tik viena, kad namai, į kuriuos savo širdies vežime mes visi jį tempiame, yra ir Dievo ir mūsų namai. Nors ši šventė labai spalvinga ir triukšminga, vis tik ji yra širdies ir ramybės šventė. Traukdami vežimą su Pasaulio Viešpačiu - Džaganatha, kuris apima Vedų trejybę – Egzistenciją, Suvokimą ir Palaimą (atitinkamai Baladeva, Krišna ir Subhadra) miesto gatvėmis, mes pirmiausia atliekame vidinį veiksmą – pakviečiame Viešpatį atsisėsti mūsų širdies vežime, ir traukiame jį širdies vežime į susitikimo vietą – sielos namus, kuriuos Vedos vadina Vrindavanu. 

@@ -9,7 +9,7 @@ const Programa = () => {
         <img src={pic03} alt="" />
       </span>
       <p>
-        Džaganatha Rathajatros šventė vyks Vilniuje 2023 m. birželio 18 d.,
+        Džaganatha Rathajatros šventė vyks Vilniuje 2025 m. birželio 8 d.,
         sekmadienį.
         <br />
         Parado su vežimu pradžia 12 val. Rotušės aikštėje.

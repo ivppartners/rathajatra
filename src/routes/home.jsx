@@ -1,5 +1,5 @@
 import { A } from "@solidjs/router";
-//import Youtube from "../components/youtube";
+import Youtube from "../components/youtube";
 import skelbimas from "../assets/images/skelbimas.png";
 
 function Home() {
@@ -13,7 +13,7 @@ function Home() {
               <h2>Visatos Viešpaties šventė</h2>
               <h3>Lai visi būna laimingi</h3>
               <h3>
-                Vilniuje, 2024 m. birželio 16 d. 12 val. Rotušės aikštėje, 14
+                Vilniuje, 2025 m. birželio 8 d. 12 val. Rotušės aikštėje, 14
                 val. V. Kudirkos aikštėje
               </h3>
             </div>
@@ -41,12 +41,7 @@ function Home() {
             </ul>
           </nav>
           <div class="youtube-container">
-            <img src={skelbimas} alt="" />
-            {/* <Youtube
-              className="youtube"
-              src="https://www.youtube.com/embed/k6ooCyBghXg?start=16"
-              title="Rathajatra Vilnius, 2019"
-            /> */}
+            <Youtube className="youtube" src="https://www.youtube.com/embed/dAFzdtntdPw" title="Rathajatros vaizdo klipas" />
           </div>
         </header>
 
