@@ -1,6 +1,6 @@
 import { A } from "@solidjs/router";
 import Youtube from "../components/youtube";
-import skelbimas from "../assets/images/skelbimas.png";
+//import skelbimas from "../assets/images/skelbimas.png";
 
 function Home() {
   return (

@@ -7,13 +7,14 @@ const Parama = () => {
       <span className="image main">
         <img src={pic02} alt="" />
       </span>
+      <h3>Šiuo metu surinkta 5700 EUR iš 9300 EUR</h3>
       <p>
         Norite paremti festivalį, kad šis būtų didesnis, gražesnis,
         spalvingesnis?
       </p>
       <p>
         Jūs galite paaukoti į vieną iš mūsų sąskaitų (mokėjimo paskirtyje
-        nurodant “Rathajatrai 2023):
+        nurodant “Rathajatrai 2024):
       </p>
       <p>
         Vilniaus Krišnos sąmonės religinė bendruomenė,
