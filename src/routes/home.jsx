@@ -92,9 +92,10 @@ function Home() {
           ,{" "}
           <A class="link" href="/tags/ahimsa">
             #Ahimsa
-          </A>
-          ,{" "}
-          #Caitanya, #AšNesuŠisKūnas, #Santarvė,
+          </A>,{" "}
+          <A class="link" href="/tags/caitanya">
+            #Caitanya</A>
+          , #AšNesuŠisKūnas, #Santarvė,
           #VienasDievasVisiems, #MeilėDievui, #MeilėArtimui, #Vienybė,
           #Vaišnavai, #KrišnosFestivaliai, #ŠventėMiestui, #joga, #Indija,
           #KarmosTaškai, #Atvirumas, #Grožis, #TikKartąMetuose, #BeribėMalonė,
@@ -108,11 +109,11 @@ function Home() {
           #BhagavadGita, #ŠrimadBhagavatam, #40MetųLietuvoje
         </footer>
         <A class="button" href="/istorijos">
-          APIE DŽAGANATĄ
+          APIE DŽAGANNATHĄ
         </A>
         <a
           target="_blank"
-          rel="noreferrer"
+          rel="noopener noreferrer"
           href="https://www.hey.lt/details.php?id=rathayatra2023"
         >
           <img

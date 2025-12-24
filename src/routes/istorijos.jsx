@@ -4,11 +4,16 @@ const Istorijos = () => {
   return (
     <div class="body is-article-visible">
       <main id="wrapper">
-        <h1>Džaganathos istorijos</h1>
+        <h1>Džagannathos istorijos</h1>
         <ul class="no-bullets align-center">
           <li>
             <A class="link" href="/stories/purioLegendos">
-              Džaganatha Purio Legendos
+              Džagannatha Purio Legendos
+            </A>
+          </li>
+          <li>
+            <A class="link" href="/stories/charchika">
+              Mādaḷā Pāñjī pasakojimas apie deivę Čarčiką
             </A>
           </li>
           <li>
@@ -23,17 +28,17 @@ const Istorijos = () => {
           </li>
           <li>
             <A class="link" href="/stories/bandhuMohanty">
-              Bandhu Mohanty ir Viešpats Džaganatha
+              Bandhu Mohanty ir Viešpats Džagannatha
             </A>
           </li>
           <li>
             <A class="link" href="/stories/isdidusBhaktas">
-              Viešpats Džaganatha ir išdidus bhaktas: tikra istorija
+              Viešpats Džagannatha ir išdidus bhaktas: tikra istorija
             </A>
           </li>
           <li>
             <A class="link" href="/stories/kilme">
-              Kaip atsirado ši unikali Viešpaties Džaganathos forma
+              Kaip atsirado ši unikali Viešpaties Džagannathos forma
             </A>
           </li>
           <li>
@@ -43,22 +48,22 @@ const Istorijos = () => {
           </li>
           <li>
             <A class="link" href="/stories/epidemija">
-              Viešpats Džaganatha ir epidemija
+              Viešpats Džagannatha ir epidemija
             </A>
           </li>
           <li>
             <A class="link" href="/stories/vagyste">
-              Kaip brahmanai bandė pavogti Džaganathą
+              Kaip brahmanai bandė pavogti Džagannathą
             </A>
           </li>
           <li>
             <A class="link" href="/stories/bauri">
-              Dasia Bauri ir Viešpats Džaganatha
+              Dasia Bauri ir Viešpats Džagannatha
             </A>
           </li>
           <li>
             <A class="link" href="/stories/ganesa">
-              Džaganathos ir Ganeša
+              Džagannathos ir Ganeša
             </A>
           </li>
           <li>
@@ -84,7 +89,7 @@ const Istorijos = () => {
         </A>
         <a
           target="_blank"
-          rel="noreferrer"
+          rel="noopener noreferrer"
           href="https://www.hey.lt/details.php?id=rathayatra2023"
         >
           <img

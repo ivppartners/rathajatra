@@ -19,6 +19,7 @@ const AbsoliutiTiesa = lazy(() => import("./routes/tags/absoliutitiesa"));
 const Ahimsa = lazy(() => import("./routes/tags/ahimsa"));
 const Bhakti = lazy(() => import("./routes/tags/bhakti"));
 const BhaktiJoga = lazy(() => import("./routes/tags/bhaktijoga"));
+const Caitanya = lazy(() => import("./routes/tags/caitanya"));
 const HareKrishna = lazy(() => import("./routes/tags/harekrishna"));
 const Iskcon = lazy(() => import("./routes/tags/iskcon"));
 const Jagannatha = lazy(() => import("./routes/tags/jagannatha"));
@@ -32,6 +33,7 @@ const Istorijos = lazy(() => import("./routes/istorijos"));
 const Stories = lazy(() => import("./routes/stories"));
 const Bandhu = lazy(() => import("./routes/stories/bandhuMohanty"));
 const Bauri = lazy(() => import("./routes/stories/bauri"));
+const Charchika = lazy(() => import("./routes/stories/charchika"));
 const Epidemija = lazy(() => import("./routes/stories/epidemija"));
 const Ganesa = lazy(() => import("./routes/stories/ganesa"));
 const GitaGovinda = lazy(() => import("./routes/stories/gitaGovinda"));
@@ -68,6 +70,7 @@ render(
         <Route path="/ahimsa" component={Ahimsa} />
         <Route path="/bhakti" component={Bhakti} />
         <Route path="/bhaktijoga" component={BhaktiJoga} />
+        <Route path="/caitanya" component={Caitanya} />
         <Route path="/harekrishna" component={HareKrishna} />
         <Route path="/iskcon" component={Iskcon} />
         <Route path="/jagannatha" component={Jagannatha} />
@@ -81,6 +84,7 @@ render(
       <Route path="/stories" component={Stories}>
         <Route path="/bandhuMohanty" component={Bandhu} />
         <Route path="/bauri" component={Bauri} />
+        <Route path="/charchika" component={Charchika} />
         <Route path="/epidemija" component={Epidemija} />
         <Route path="/ganesa" component={Ganesa} />
         <Route path="/gitaGovinda" component={GitaGovinda} />
