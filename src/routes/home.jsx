@@ -13,7 +13,7 @@ function Home() {
               <h2>Visatos Viešpaties šventė</h2>
               <h3>Lai visi būna laimingi</h3>
               <h3>
-                Vilniuje, 2025 m. birželio 8 d. 12 val. Lukiškių aikštėje, 14
+                Vilniuje, 2026 m. birželio 21 d. 12 val. Lukiškių aikštėje, 15
                 val. Rotušės aikštėje
               </h3>
             </div>

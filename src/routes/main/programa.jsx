@@ -9,12 +9,12 @@ const Programa = () => {
         <img src={pic03} alt="" />
       </span>
       <p>
-        Džaganatha Rathajatros šventė vyks Vilniuje 2025 m. birželio 8 d.,
+        Džaganatha Rathajatros šventė vyks Vilniuje 2026 m. birželio 21 d.,
         sekmadienį.
         <br />
         Parado su vežimu pradžia 12 val. Lukiškių aikštėje.
         <br />
-        Koncertinės programos pradžia 14 val. Rotušės aikštėje.
+        Koncertinės programos pradžia 15 val. Rotušės aikštėje.
       </p>
       <p>
         12:00 Džaganatha su broliu Baladeva ir seserimi Subhadra atvyksta į
@@ -28,7 +28,7 @@ const Programa = () => {
         13:00 Vežimas pajuda iš Lukiškių aikštės. Vežimas važiuoja Gedimino prospektu, Šventaragio g., Pilies g. iki Rotušės aikštės. Traukiant vežimą
         skamba mantros, vyksta šokiai.
         <br />
-        14:00 Vežimas atvažiuoja į Rotušės aikštę; Koncertinė programa, kurioje
+        15:00 Vežimas atvažiuoja į Rotušės aikštę; Koncertinė programa, kurioje
         galėsite išvysti tradicinius indiškus šokius Bharata Natyam, pasiklausyti vaišnavų dainų - bhadžanų.
       </p>
       <p>
