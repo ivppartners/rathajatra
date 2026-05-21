@@ -1,0 +1,131 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('tags');
+  return entries.map(entry => ({
+    params: { slug: entry.id },
+    props: { entry }
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<BaseLayout title={`#${entry.data.title} - Rathajatra Vilnius 2026`}>
+  <!-- BACKGROUND HOMEPAGE (blurred) -->
+  <div class="homepage-container container background-blurred" aria-hidden="true">
+    <header class="hero-header glass-card">
+      <div class="header-content">
+        <h1>Rathajatra — Taikos formulė</h1>
+        <h2 class="subtitle">Visatos Viešpaties šventė</h2>
+        <p class="tagline">Lai visi būna laimingi!</p>
+      </div>
+    </header>
+  </div>
+
+  <!-- OVERLAY MODAL -->
+  <div class="modal-wrapper" id="modal-container">
+    <div class="modal-content glass-card" id="modal-content">
+      <a href="/" class="btn-close" aria-label="Uždaryti">✕</a>
+      
+      <article class="prose">
+        <h2>#{entry.data.title}</h2>
+
+        {entry.data.image && (
+          <div class="article-image-wrapper">
+            <img src={entry.data.image.src} alt={entry.data.title} class="article-image" />
+          </div>
+        )}
+
+        <div class="markdown-body">
+          <Content />
+        </div>
+      </article>
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  // Dynamic handling: click outside modal-content goes back to home page '/'
+  document.addEventListener('astro:page-load', () => {
+    const wrapper = document.getElementById('modal-container');
+    const content = document.getElementById('modal-content');
+    if (wrapper && content) {
+      wrapper.addEventListener('click', (e) => {
+        if (!content.contains(e.target as Node)) {
+          const homeLink = document.querySelector('.btn-close') as HTMLAnchorElement;
+          if (homeLink) homeLink.click();
+        }
+      });
+    }
+  });
+</script>
+
+<style>
+  .background-blurred {
+    filter: blur(12px);
+    opacity: 0.35;
+    pointer-events: none;
+    transform: scale(0.98);
+    transition: all var(--transition-smooth);
+  }
+
+  .homepage-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .hero-header {
+    padding: 3rem;
+    text-align: center;
+    border-radius: 28px;
+  }
+
+  .prose h2 {
+    font-size: 2.25rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--color-saffron);
+  }
+
+  .article-image-wrapper {
+    margin: 1.5rem 0;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  }
+
+  .article-image {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    max-height: 400px;
+  }
+
+  .markdown-body {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+  }
+
+  .markdown-body :global(p) {
+    margin-bottom: 1.5rem;
+  }
+
+  .markdown-body :global(blockquote) {
+    border-left: 4px solid var(--color-saffron);
+    background: rgba(255, 106, 0, 0.04);
+    padding: 1rem 1.5rem;
+    border-radius: 4px 12px 12px 4px;
+    font-style: italic;
+    margin: 1.5rem 0;
+    color: var(--text-primary);
+  }
+</style>

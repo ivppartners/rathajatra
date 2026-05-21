@@ -1,0 +1,336 @@
+/* Premium Rathajatra Global Stylesheet */
+@import url('https://fonts.googleapis.com/css2?family=Amita:wght@400;700&family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700;800&display=swap');
+
+:root {
+  /* Harmonious, spiritually-inspired modern color palette */
+  --bg-base: #0a0c0e;
+  --bg-card: rgba(18, 22, 28, 0.45);
+  --bg-card-hover: rgba(26, 32, 40, 0.55);
+  --bg-overlay: rgba(6, 8, 10, 0.55);
+  
+  /* Saffron & Gold Theme */
+  --color-saffron: #ff6a00;
+  --color-gold: #ffb800;
+  --color-accent: #ff4500;
+  --gradient-saffron: linear-gradient(135deg, #ff9e00 0%, #ff5200 100%);
+  --gradient-gold-aura: radial-gradient(circle, rgba(255, 106, 0, 0.12) 0%, rgba(255, 184, 0, 0.03) 60%, transparent 100%);
+  --gradient-saffron-border: linear-gradient(135deg, rgba(255, 158, 0, 0.35) 0%, rgba(255, 82, 0, 0.1) 100%);
+
+  /* Border & Shadows */
+  --border-card: 1px solid rgba(255, 255, 255, 0.08);
+  --border-card-hover: 1px solid rgba(255, 106, 0, 0.3);
+  --shadow-premium: 0 12px 40px -10px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 24px rgba(255, 106, 0, 0.15);
+
+  /* Typography */
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #64748b;
+  --font-headline: 'Amita', cursive, 'Outfit', sans-serif;
+  --font-title: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-bounce: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Reset and base rules */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  scrollbar-gutter: stable;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  line-height: 1.65;
+  background-color: transparent;
+}
+
+/* Stunning Interactive Saffron Aura Backgrounds */
+.aura-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  background-image: linear-gradient(
+      180deg,
+      rgba(10, 12, 14, 0.4) 0%,
+      rgba(10, 12, 14, 0.55) 50%,
+      rgba(10, 12, 14, 0.7) 100%
+    ),
+    url('../assets/images/pp331.webp');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.aura-bg::before, .aura-bg::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(140px);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.aura-bg::before {
+  top: -10%;
+  right: 5%;
+  width: 60vw;
+  height: 60vw;
+  background: radial-gradient(circle, rgba(255, 106, 0, 0.08) 0%, rgba(255, 50, 0, 0.01) 70%, transparent 100%);
+  animation: float-aura 20s infinite alternate ease-in-out;
+}
+
+.aura-bg::after {
+  bottom: -15%;
+  left: -5%;
+  width: 70vw;
+  height: 70vw;
+  background: radial-gradient(circle, rgba(255, 184, 0, 0.06) 0%, rgba(255, 106, 0, 0) 70%, transparent 100%);
+  animation: float-aura 28s infinite alternate-reverse ease-in-out;
+}
+
+@keyframes float-aura {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(40px, -30px) scale(1.1); }
+}
+
+/* Premium Typography & Styling */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-title);
+  color: var(--text-primary);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+h1, h2 {
+  font-family: var(--font-headline);
+  letter-spacing: normal;
+}
+
+h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #ffffff 30%, #ffd6b3 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.5rem;
+}
+
+h2 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  background: var(--gradient-saffron);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+h3 {
+  font-size: 1.25rem;
+  color: var(--color-gold);
+}
+
+p {
+  color: var(--text-secondary);
+  font-weight: 300;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+a {
+  color: var(--color-gold);
+  text-decoration: none;
+  transition: all var(--transition-smooth);
+}
+
+a:hover {
+  color: var(--color-saffron);
+  text-shadow: 0 0 10px rgba(255, 106, 0, 0.3);
+}
+
+/* Premium Glassmorphic Cards */
+.glass-card {
+  background: var(--bg-card);
+  border: var(--border-card);
+  border-radius: 20px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: var(--shadow-premium);
+  transition: transform var(--transition-bounce), border-color var(--transition-smooth), box-shadow var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0) 100%);
+  pointer-events: none;
+}
+
+.glass-card:hover {
+  border-color: rgba(255, 106, 0, 0.35);
+  box-shadow: var(--shadow-premium), var(--shadow-glow);
+  transform: translateY(-4px);
+}
+
+/* General Layout Elements */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-base);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 106, 0, 0.25);
+  border-radius: 10px;
+  border: 2px solid var(--bg-base);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-saffron);
+}
+
+/* Dynamic Grids */
+.grid-responsive {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+/* Saffron Buttons & Links */
+.btn-premium {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gradient-saffron);
+  color: #fff;
+  font-family: var(--font-title);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.85rem 2rem;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(255, 82, 0, 0.3);
+  transition: all var(--transition-bounce);
+}
+
+.btn-premium:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(255, 82, 0, 0.5), var(--shadow-glow);
+  color: #fff;
+}
+
+.btn-premium:active {
+  transform: translateY(1px);
+}
+
+/* Modal and Article overlay styles */
+.modal-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--bg-overlay);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+  animation: fade-in 0.25s ease-out forwards;
+}
+
+.modal-content {
+  width: 100%;
+  max-width: 800px;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 2.5rem;
+  background: rgba(16, 20, 24, 0.85);
+  border: var(--border-card-hover);
+  border-radius: 24px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), var(--shadow-glow);
+  position: relative;
+  animation: scale-up 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Close button style */
+.btn-close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: var(--border-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: all var(--transition-smooth);
+}
+
+.btn-close:hover {
+  background: var(--gradient-saffron);
+  color: #fff;
+  border-color: transparent;
+  transform: rotate(90deg);
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scale-up {
+  from { transform: scale(0.95) translateY(10px); opacity: 0; }
+  to { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+/* Responsive fixes */
+@media (max-width: 768px) {
+  h1 { font-size: 2.25rem; }
+  h2 { font-size: 1.6rem; }
+  .modal-content {
+    padding: 1.5rem;
+    max-height: 90vh;
+  }
+}

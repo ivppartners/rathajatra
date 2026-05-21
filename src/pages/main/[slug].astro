@@ -1,0 +1,255 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Youtube from '../../components/Youtube.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('main');
+  return entries.map(entry => ({
+    params: { slug: entry.id },
+    props: { entry }
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+const allTags = await getCollection('tags');
+
+// Define menu structure mapped to the content slugs
+const menuItems = [
+  { href: '/main/svente', label: 'Šventė', slug: 'svente' },
+  { href: '/main/programa', label: 'Programa', slug: 'programa' },
+  { href: '/main/motyvacija', label: 'Motyvacija', slug: 'motyvacija' },
+  { href: '/main/parama', label: 'Parama', slug: 'parama' },
+  { href: '/main/apie', label: 'Apie mus', slug: 'apie' },
+  { href: '/main/kontaktai', label: 'Kontaktai', slug: 'kontaktai' }
+];
+---
+
+<BaseLayout title={`${entry.data.title} - Rathajatra Vilnius 2026`} description={entry.data.description}>
+  <!-- BACKGROUND HOMEPAGE (blurred) -->
+  <div class="homepage-container container background-blurred" aria-hidden="true">
+    <header class="hero-header glass-card">
+      <div class="header-content">
+        <h1>Rathajatra — Taikos formulė</h1>
+        <h2 class="subtitle">Visatos Viešpaties šventė</h2>
+        <p class="tagline">Lai visi būna laimingi!</p>
+        <div class="festival-info">
+          <div class="info-badge">📅 2026 m. birželio 21 d.</div>
+          <div class="info-badge">📍 12 val. Lukiškių aikštėje</div>
+        </div>
+      </div>
+      <nav class="main-nav">
+        <ul>
+          {menuItems.map(item => (
+            <li>
+              <a href={item.href} class={`nav-item ${item.slug === entry.id ? 'active' : ''}`}>
+                ✦ {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </header>
+  </div>
+
+  <!-- OVERLAY MODAL -->
+  <div class="modal-wrapper" id="modal-container">
+    <div class="modal-content glass-card" id="modal-content">
+      <a href="/" class="btn-close" aria-label="Uždaryti">✕</a>
+      
+      <article class="prose">
+        <h2>{entry.data.title}</h2>
+        
+        {entry.data.youtubeId && (
+          <Youtube src={`https://www.youtube.com/embed/${entry.data.youtubeId}`} title={entry.data.title} />
+        )}
+
+        {entry.data.image && (
+          <div class="article-image-wrapper">
+            <img src={entry.data.image.src} alt={entry.data.title} class="article-image" />
+          </div>
+        )}
+
+        <div class="markdown-body">
+          <Content />
+        </div>
+
+        {entry.id === 'kontaktai' && (
+          <ContactForm />
+        )}
+        
+        {entry.data.youtubeIds && entry.data.youtubeIds.map(id => (
+          <Youtube id={id} title={entry.data.title} />
+        ))}
+      </article>
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  // Dynamic handling: click outside modal-content goes back to home page '/'
+  document.addEventListener('astro:page-load', () => {
+    const wrapper = document.getElementById('modal-container');
+    const content = document.getElementById('modal-content');
+    if (wrapper && content) {
+      wrapper.addEventListener('click', (e) => {
+        if (!content.contains(e.target as Node)) {
+          // Navigate to home page using standard Astro routing
+          const homeLink = document.querySelector('.btn-close') as HTMLAnchorElement;
+          if (homeLink) homeLink.click();
+        }
+      });
+    }
+  });
+</script>
+
+<style>
+  .background-blurred {
+    filter: blur(12px);
+    opacity: 0.35;
+    pointer-events: none;
+    transform: scale(0.98);
+    transition: all var(--transition-smooth);
+  }
+
+  .homepage-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .hero-header {
+    padding: 3rem;
+    text-align: center;
+    border-radius: 28px;
+  }
+
+  .header-content {
+    margin-bottom: 2.5rem;
+  }
+
+  .subtitle {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+    background: linear-gradient(135deg, var(--color-gold) 0%, #ff8c00 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .tagline {
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    margin-top: 0.5rem;
+    font-style: italic;
+  }
+
+  .festival-info {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1.75rem;
+  }
+
+  .info-badge {
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    background: rgba(255, 106, 0, 0.08);
+    border: 1px solid rgba(255, 106, 0, 0.15);
+    border-radius: 50px;
+    font-size: 0.9rem;
+    color: #ffd6b3;
+    font-weight: 500;
+  }
+
+  .main-nav {
+    margin-top: 2rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .main-nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .nav-item {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    color: var(--text-primary);
+    font-family: var(--font-title);
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .nav-item.active {
+    background: var(--gradient-saffron);
+    border-color: transparent;
+    color: #fff;
+  }
+
+  /* Modal Inner Prose Styling */
+  .prose h2 {
+    font-size: 2.25rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .article-image-wrapper {
+    margin: 1.5rem 0;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  }
+
+  .article-image {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    max-height: 400px;
+  }
+
+  .markdown-body {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+  }
+
+  .markdown-body :global(p) {
+    margin-bottom: 1.5rem;
+  }
+
+  .markdown-body :global(blockquote) {
+    border-left: 4px solid var(--color-saffron);
+    background: rgba(255, 106, 0, 0.04);
+    padding: 1rem 1.5rem;
+    border-radius: 4px 12px 12px 4px;
+    font-style: italic;
+    margin: 1.5rem 0;
+    color: var(--text-primary);
+  }
+
+  .markdown-body :global(ul) {
+    margin-left: 1.5rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .markdown-body :global(li) {
+    list-style-type: square;
+    color: var(--text-secondary);
+  }
+</style>

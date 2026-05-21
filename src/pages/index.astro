@@ -1,0 +1,492 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Youtube from "../components/Youtube.astro";
+import ContactForm from "../components/ContactForm.astro";
+import { getCollection, render } from "astro:content";
+
+const allMain = await getCollection("main");
+const allTags = await getCollection("tags");
+
+// Static menu items mapping to their respective pages (with Astro modal overlay views)
+const menuItems = [
+  { href: "/main/svente", label: "Šventė", slug: "svente" },
+  { href: "/main/programa", label: "Programa", slug: "programa" },
+  { href: "/main/motyvacija", label: "Motyvacija", slug: "motyvacija" },
+  { href: "/main/parama", label: "Parama", slug: "parama" },
+  { href: "/main/apie", label: "Apie mus", slug: "apie" },
+  { href: "/main/kontaktai", label: "Kontaktai", slug: "kontaktai" },
+];
+
+const MENU_SLUGS = [
+  "svente",
+  "programa",
+  "motyvacija",
+  "parama",
+  "apie",
+  "kontaktai",
+];
+
+// Filter the main collection to only include separate blog-style posts (not static menu pages)
+const blogEntries = allMain.filter((entry) => !MENU_SLUGS.includes(entry.id));
+
+// Sort blog posts: newest at the top (by date descending, fallback to order descending)
+const sortedBlog = blogEntries.sort((a, b) => {
+  // Sort by date if both have dates
+  if (a.data.date && b.data.date) {
+    return new Date(b.data.date).getTime() - new Date(a.data.date).getTime();
+  }
+  if (a.data.date) return -1;
+  if (b.data.date) return 1;
+
+  // Fallback to order descending (so higher order numbers like 7 go to the top)
+  const orderA = a.data.order ?? 0;
+  const orderB = b.data.order ?? 0;
+  return orderB - orderA;
+});
+
+// Pre-render content components for the sorted blog posts
+const blogWithContent = await Promise.all(
+  sortedBlog.map(async (entry) => {
+    const { Content } = await render(entry);
+    return { entry, Content };
+  }),
+);
+---
+
+<BaseLayout title="Rathajatra Vilnius 2026 - Taikos formulė">
+  <div class="homepage-container container">
+    <header class="hero-header glass-card">
+      <div class="header-content">
+        <h1>Rathajatra — Taikos formulė</h1>
+        <h2 class="subtitle">Visatos Viešpaties šventė</h2>
+        <p class="tagline">Lai visi būna laimingi!</p>
+
+        <div class="festival-info">
+          <div class="info-badge">
+            <span class="icon">📅</span>
+            <span>2026 m. birželio 21 d.</span>
+          </div>
+          <div class="info-badge">
+            <span class="icon">📍</span>
+            <span>12 val. Lukiškių aikštėje — 15 val. Rotušės aikštėje</span>
+          </div>
+        </div>
+      </div>
+
+      <nav class="main-nav">
+        <ul>
+          {
+            menuItems.map((item) => (
+              <li>
+                <a href={item.href} class="nav-item">
+                  <span class="bullet">✦</span> {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <div class="trailer-wrapper">
+        <Youtube
+          src="https://www.youtube.com/embed/dVIMBFPXaNI"
+          title="Rathajatros vaizdo klipas"
+        />
+      </div>
+    </header>
+
+    <!-- BLOG SECTION -->
+    <section class="blog-section">
+      <div class="blog-feed">
+        {
+          blogWithContent.length > 0 ? (
+            blogWithContent.map(({ entry, Content }) => (
+              <article class="feed-card glass-card" id={entry.id}>
+                <h3>{entry.data.title}</h3>
+
+                {entry.data.youtubeId && (
+                  <Youtube id={entry.data.youtubeId} title={entry.data.title} />
+                )}
+
+                {entry.data.image && (
+                  <div class="article-image-wrapper">
+                    <img
+                      src={entry.data.image.src}
+                      alt={entry.data.title}
+                      class="article-image"
+                    />
+                  </div>
+                )}
+
+                <div class="markdown-body">
+                  <Content />
+                </div>
+
+                {entry.id === "kontaktai" && <ContactForm />}
+
+                {entry.data.youtubeIds &&
+                  entry.data.youtubeIds.map((id) => (
+                    <Youtube id={id} title={entry.data.title} />
+                  ))}
+              </article>
+            ))
+          ) : (
+            <div class="no-posts glass-card">
+              <p>Naujų dienoraščio įrašų kol kas nėra. Sekite naujienas!</p>
+            </div>
+          )
+        }
+      </div>
+    </section>
+
+    <main class="cta-section">
+      <a href="/istorijos" class="btn-premium btn-cta">
+        📖 Apie Džagannathą (Istorijos)
+      </a>
+    </main>
+
+    <footer class="tags-footer glass-card">
+      <h3>Atraskite daugiau temų:</h3>
+      <div class="tag-cloud">
+        {
+          allTags.map((tag) => (
+            <a href={`/tags/${tag.id}`} class="tag-link">
+              #{tag.data.title}
+            </a>
+          ))
+        }
+        <span class="tag-static">#AšNesuŠisKūnas</span>
+        <span class="tag-static">#Santarvė</span>
+        <span class="tag-static">#VienasDievasVisiems</span>
+        <span class="tag-static">#MeilėDievui</span>
+        <span class="tag-static">#MeilėArtimui</span>
+        <span class="tag-static">#Vienybė</span>
+        <span class="tag-static">#Vaišnavai</span>
+        <span class="tag-static">#KrišnosFestivaliai</span>
+        <span class="tag-static">#ŠventėMiestui</span>
+        <span class="tag-static">#joga</span>
+        <span class="tag-static">#Indija</span>
+        <span class="tag-static">#KarmosTaškai</span>
+        <span class="tag-static">#Atvirumas</span>
+        <span class="tag-static">#BeribėMalonė</span>
+        <span class="tag-static">#ŠluokDievuikKelią</span>
+        <span class="tag-static">#LaimingasŽmogus</span>
+        <span class="tag-static">#Mantra</span>
+        <span class="tag-static">#meditation</span>
+        <span class="tag-static">#SavęsPažinimas</span>
+        <span class="tag-static">#Kirtana</span>
+        <span class="tag-static">#Sankirtana</span>
+        <span class="tag-static">#FoodForLife</span>
+        <span class="tag-static">#HighThinkingSimpleLiving</span>
+        <span class="tag-static">#AtgalNamoPasDievą</span>
+        <span class="tag-static">#Prasadas</span>
+        <span class="tag-static">#40MetųLietuvoje</span>
+      </div>
+
+      <div class="visitor-counter">
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://www.hey.lt/details.php?id=rathayatra2023"
+        >
+          <img
+            width="88"
+            height="31"
+            src="https://www.hey.lt/count.php?id=rathayatra2023"
+            alt="Hey.lt lankytojų skaitliukas"
+          />
+        </a>
+      </div>
+    </footer>
+  </div>
+</BaseLayout>
+
+<style>
+  .homepage-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .hero-header {
+    padding: 3rem;
+    text-align: center;
+    border-radius: 28px;
+  }
+
+  .header-content {
+    margin-bottom: 2.5rem;
+  }
+
+  .subtitle {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+    background: linear-gradient(135deg, var(--color-gold) 0%, #ff8c00 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .tagline {
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    margin-top: 0.5rem;
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  .festival-info {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1.75rem;
+    flex-wrap: wrap;
+  }
+
+  .info-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1.25rem;
+    background: rgba(255, 106, 0, 0.08);
+    border: 1px solid rgba(255, 106, 0, 0.15);
+    border-radius: 50px;
+    font-size: 0.9rem;
+    color: #ffd6b3;
+    font-weight: 500;
+  }
+
+  .main-nav {
+    margin-top: 2rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .main-nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .nav-item {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    color: var(--text-primary);
+    font-family: var(--font-title);
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all var(--transition-bounce);
+  }
+
+  .nav-item:hover {
+    background: rgba(255, 106, 0, 0.08);
+    border-color: var(--color-saffron);
+    transform: translateY(-2px);
+    color: var(--color-gold);
+  }
+
+  .bullet {
+    color: var(--color-saffron);
+    margin-right: 0.25rem;
+  }
+
+  .trailer-wrapper {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  /* Blog Section Header */
+  .blog-section {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .section-title {
+    font-family: var(--font-headline);
+    font-size: 2.75rem;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    background: linear-gradient(135deg, var(--color-gold) 0%, #ff8c00 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+  }
+
+  .section-title::after {
+    content: "✦ ✦ ✦";
+    display: block;
+    font-size: 1rem;
+    color: var(--color-saffron);
+    margin-top: 0.5rem;
+    opacity: 0.6;
+    letter-spacing: 0.25em;
+  }
+
+  /* Vertical Blog Feed */
+  .blog-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .feed-card {
+    padding: 3rem;
+    border-radius: 28px;
+  }
+
+  .feed-card h3 {
+    font-family: var(--font-headline);
+    font-size: 2.25rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--gradient-saffron);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .article-image-wrapper {
+    margin: 1.5rem 0;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  }
+
+  .article-image {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    max-height: 450px;
+  }
+
+  /* Markdown body prose styles */
+  .markdown-body {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+  }
+
+  .markdown-body :global(p) {
+    margin-bottom: 1.5rem;
+    line-height: 1.75;
+  }
+
+  .markdown-body :global(blockquote) {
+    border-left: 4px solid var(--color-saffron);
+    background: rgba(255, 106, 0, 0.04);
+    padding: 1rem 1.5rem;
+    border-radius: 4px 12px 12px 4px;
+    font-style: italic;
+    margin: 1.5rem 0;
+    color: var(--text-primary);
+  }
+
+  .markdown-body :global(ul) {
+    margin-left: 1.5rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .markdown-body :global(li) {
+    list-style-type: square;
+    color: var(--text-secondary);
+  }
+
+  .no-posts {
+    padding: 3rem;
+    text-align: center;
+    border-radius: 20px;
+    color: var(--text-secondary);
+  }
+
+  .cta-section {
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  .btn-cta {
+    font-size: 1.1rem;
+    padding: 1rem 3rem;
+    border-radius: 16px;
+  }
+
+  .tags-footer {
+    padding: 2.5rem;
+  }
+
+  .tags-footer h3 {
+    font-family: var(--font-title);
+    font-size: 1.25rem;
+    margin-bottom: 1.25rem;
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  .tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+
+  .tag-link,
+  .tag-static {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.9rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    color: var(--text-secondary);
+  }
+
+  .tag-link {
+    transition: all var(--transition-smooth);
+  }
+
+  .tag-link:hover {
+    background: rgba(255, 106, 0, 0.08);
+    border-color: rgba(255, 106, 0, 0.35);
+    color: var(--color-gold);
+    transform: translateY(-1px);
+  }
+
+  .tag-static {
+    opacity: 0.65;
+    cursor: default;
+  }
+
+  .visitor-counter {
+    display: flex;
+    justify-content: center;
+    opacity: 0.6;
+    transition: opacity var(--transition-smooth);
+    margin-top: 1rem;
+  }
+
+  .visitor-counter:hover {
+    opacity: 1;
+  }
+
+  @media (max-width: 768px) {
+    .hero-header {
+      padding: 1.5rem;
+    }
+    .feed-card {
+      padding: 1.5rem;
+    }
+    .festival-info {
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+    }
+  }
+</style>

@@ -1,0 +1,195 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const allStories = await getCollection('stories');
+
+// Hardcode a mapping for beautiful Lithuanian descriptions/teasers for each story
+const storyTeasers: Record<string, string> = {
+  bandhumohanty: "Jaudinanti istorija apie ištikimą atsidavusį Bandhu Mohanty, kuriam pats Viešpats Džagannatha paslapčia atnešė auksinį indą su maistu.",
+  bauri: "Paprasto žemos kastos atsidavusiojo Dasia Bauri tyros meilės istorija, kai Viešpats pats ištiesė ranką priimti jo siūlomą kokosą.",
+  charchika: "Madaḷā Pañjī metraščių pasakojimas apie galingą deivę Čarčiką ir jos dvasinius ryšius su Purio šventykla.",
+  epidemija: "Kaip Viešpats Džagannatha padėjo išgydyti Purio gyventojus nuo baisios epidemijos ir suteikė visiems savo apsaugą.",
+  ganesa: "Unikalus pasakojimas apie tai, kaip Viešpats Džagannatha pasirodė dramblio pavidalu (Hati Vesa), kad pradžiugintų Ganešos garbintoją.",
+  gitagovinda: "Šventojo poeto Džajadevos šedevras ir jo gilus mistinis ryšys su Džagannathos šventykla bei paties Viešpaties pagalba baigiant rašyti eiles.",
+  gitapanda: "Nuostabi istorija apie Gita Pandą, kuris giedojo Bhagavad-gitą, ir kaip Džagannatha stebuklingai apgynė jį ir jo tyrumą.",
+  hanumanas: "Apie ištikimąjį aštuonrankį Hanumaną, saugantį Purio šventyklos vartus nuo vandenyno bangų triukšmo.",
+  isdidusbhaktas: "Istorija apie karalių Prataparudrą, jo dvasinį nuolankumą ir kaip Viešpats sugriovė jo bei kitų atsidavusiųjų išdidumą.",
+  kilme: "Paslaptinga ir didinga legenda apie tai, kaip karalius Indradjumna pastatė šventyklą ir kaip atsirado šios unikalios, pusiau nebaigtos medinės formos.",
+  musulmonas: "Apie musulmoną bhaktą Salabegą, kurio meilė buvo tokia stipri, kad Džagannathos vežimas sustojo ir laukė jo kelio viduryje.",
+  puriolegendos: "Nacionalinės Geografijos dokumentinis filmas apie Purio Rathajatrą, šventyklos architektūros paslaptis ir jos dvasinę reikšmę.",
+  vagyste: "Intriguojantis pasakojimas apie tai, kaip brahmanai bandė slapta išgabenti ir paslėpti Viešpaties Džagannathos pavidalą."
+};
+---
+
+<BaseLayout title="Džagannathos istorijos ir legendos - Rathajatra Vilnius">
+  <div class="stories-container container">
+    <header class="stories-header glass-card">
+      <a href="/" class="btn-back">← Grįžti į pagrindinį</a>
+      <h1>Džagannathos istorijos</h1>
+      <p class="subtitle">Atraskite tūkstantmetį Purio šventyklos dvasinį palikimą ir pasakojimus</p>
+    </header>
+
+    <div class="grid-responsive">
+      {allStories.map(story => (
+        <a href={`/stories/${story.id}`} class="story-card glass-card">
+          <div class="card-icon">🪔</div>
+          <div class="card-body">
+            <h3>{story.data.title}</h3>
+            <p>{storyTeasers[story.id] || "Skaityti nuostabią Viešpaties Džagannathos šventos žemės legendą..."}</p>
+            <span class="read-more">Skaityti istoriją →</span>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <footer class="stories-footer glass-card">
+      <a class="citation-link" href="https://jagannathbaladevsubhadra.blogspot.com/" target="_blank" rel="noopener noreferrer">
+        🔗 Cituojama iš: https://jagannathbaladevsubhadra.blogspot.com/
+      </a>
+      
+      <div class="visitor-counter">
+        <a target="_blank" rel="noopener noreferrer" href="https://www.hey.lt/details.php?id=rathayatra2023">
+          <img width="88" height="31" src="https://www.hey.lt/count.php?id=rathayatra2023" alt="Hey.lt lankytojų skaitliukas" />
+        </a>
+      </div>
+    </footer>
+  </div>
+</BaseLayout>
+
+<style>
+  .stories-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .stories-header {
+    padding: 2.5rem;
+    text-align: center;
+    position: relative;
+  }
+
+  .btn-back {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    transition: all var(--transition-smooth);
+  }
+
+  .btn-back:hover {
+    background: rgba(255, 106, 0, 0.08);
+    border-color: var(--color-saffron);
+    color: var(--color-gold);
+    transform: translateX(-3px);
+  }
+
+  .subtitle {
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    margin-top: 0.5rem;
+  }
+
+  /* Story Cards Grid Styling */
+  .story-card {
+    display: flex;
+    gap: 1.25rem;
+    padding: 1.75rem;
+    text-align: left;
+    height: 100%;
+  }
+
+  .card-icon {
+    font-size: 2rem;
+    line-height: 1;
+    align-self: flex-start;
+    padding: 0.5rem;
+    background: rgba(255, 106, 0, 0.06);
+    border: 1px solid rgba(255, 106, 0, 0.15);
+    border-radius: 12px;
+  }
+
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .card-body h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+    transition: color var(--transition-smooth);
+  }
+
+  .story-card:hover .card-body h3 {
+    color: var(--color-gold);
+  }
+
+  .card-body p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.25rem;
+    flex-grow: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .read-more {
+    font-family: var(--font-title);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-saffron);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: auto;
+  }
+
+  .stories-footer {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .citation-link {
+    font-size: 0.95rem;
+    font-weight: 500;
+  }
+
+  .visitor-counter {
+    opacity: 0.6;
+    transition: opacity var(--transition-smooth);
+  }
+
+  .visitor-counter:hover {
+    opacity: 1;
+  }
+
+  @media (max-width: 768px) {
+    .stories-header {
+      padding: 3rem 1.5rem 1.5rem;
+    }
+    .btn-back {
+      top: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .btn-back:hover {
+      transform: translateX(-50%) translateY(-2px);
+    }
+  }
+</style>

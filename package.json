@@ -1,22 +1,18 @@
 {
+  "name": "magenta-main",
   "type": "module",
-  "name": "vite-template-solid",
-  "version": "0.0.0",
-  "description": "",
-  "scripts": {
-    "start": "vite",
-    "dev": "vite",
-    "build": "vite build",
-    "serve": "vite preview"
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0"
   },
-  "license": "MIT",
-  "devDependencies": {
-    "solid-devtools": "^0.34.5",
-    "vite": "^7.3.0",
-    "vite-plugin-solid": "^2.11.12"
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
   "dependencies": {
-    "@solidjs/router": "^0.16.1",
-    "solid-js": "^1.9.12"
+    "@astrojs/node": "^10.1.1",
+    "astro": "^6.3.6"
   }
 }

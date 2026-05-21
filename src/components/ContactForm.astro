@@ -1,0 +1,147 @@
+---
+---
+<form id="contact-form" class="contact-form">
+  <div class="field">
+    <label for="name">Vardas</label>
+    <input type="text" id="name" name="name" required placeholder="Jūsų vardas..." />
+  </div>
+  
+  <div class="field">
+    <label for="email">El. paštas</label>
+    <input type="email" id="email" name="email" required placeholder="el.pastas@pavyzdys.lt" />
+  </div>
+  
+  <div class="field">
+    <label for="message">Žinutė</label>
+    <textarea id="message" name="message" rows="4" required placeholder="Jūsų žinutė mums..."></textarea>
+  </div>
+  
+  <button type="submit" class="btn-premium" style="align-self: flex-start; margin-top: 0.5rem;">Siųsti žinutę</button>
+  
+  <div id="form-status" class="form-status hidden"></div>
+</form>
+
+<script>
+  // Add interactive AJAX handler for the contact form
+  document.addEventListener('astro:page-load', () => {
+    const form = document.getElementById('contact-form') as HTMLFormElement | null;
+    const statusDiv = document.getElementById('form-status');
+    
+    if (form && statusDiv) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        statusDiv.className = 'form-status info';
+        statusDiv.textContent = 'Siunčiama...';
+        statusDiv.classList.remove('hidden');
+        
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+        
+        try {
+          const response = await fetch('/api/send-email', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          });
+          
+          const result = await response.json();
+          
+          if (response.ok) {
+            statusDiv.className = 'form-status success';
+            statusDiv.textContent = result.message || 'Žinutė sėkmingai išsiųsta! Ačiū jums.';
+            form.reset();
+          } else {
+            statusDiv.className = 'form-status error';
+            statusDiv.textContent = result.message || 'Klaida siunčiant žinutę. Bandykite dar kartą.';
+          }
+        } catch (error) {
+          statusDiv.className = 'form-status error';
+          statusDiv.textContent = 'Įvyko tinklo klaida. Patikrinkite savo interneto ryšį.';
+        }
+      });
+    }
+  });
+</script>
+
+<style>
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    width: 100%;
+  }
+  
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  label {
+    font-family: var(--font-title);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-gold);
+  }
+  
+  input, textarea {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    transition: all var(--transition-smooth);
+    width: 100%;
+  }
+  
+  input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--color-saffron);
+    box-shadow: 0 0 10px rgba(255, 106, 0, 0.2);
+    background: rgba(0, 0, 0, 0.4);
+  }
+  
+  .form-status {
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-align: center;
+    transition: all var(--transition-smooth);
+    margin-top: 0.5rem;
+  }
+  
+  .form-status.hidden {
+    display: none;
+  }
+  
+  .form-status.info {
+    background: rgba(255, 184, 0, 0.1);
+    border: 1px solid rgba(255, 184, 0, 0.2);
+    color: var(--color-gold);
+  }
+  
+  .form-status.success {
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    color: #10b981;
+  }
+  
+  .form-status.error {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+  }
+</style>
