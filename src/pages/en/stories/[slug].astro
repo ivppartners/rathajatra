@@ -1,12 +1,13 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Youtube from '../../../components/Youtube.astro';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
-  const entries = await getCollection('tags');
-  const ltEntries = entries.filter(entry => entry.id.startsWith('lt/'));
-  return ltEntries.map(entry => {
-    const slug = entry.id.replace('lt/', '');
+  const entries = await getCollection('stories');
+  const enEntries = entries.filter(entry => entry.id.startsWith('en/'));
+  return enEntries.map(entry => {
+    const slug = entry.id.replace('en/', '');
     return {
       params: { slug },
       props: { entry }
@@ -18,25 +19,27 @@ const { entry } = Astro.props;
 const { Content } = await render(entry);
 ---
 
-<BaseLayout title={`#${entry.data.title} - Rathajatra Vilnius 2026`}>
+<BaseLayout title={`${entry.data.title} - Stories of Jagannatha`}>
   <!-- BACKGROUND HOMEPAGE (blurred) -->
-  <div class="homepage-container container background-blurred" aria-hidden="true">
-    <header class="hero-header glass-card">
-      <div class="header-content">
-        <h1>Rathajatra — Taikos formulė</h1>
-        <h2 class="subtitle">Visatos Viešpaties šventė</h2>
-        <p class="tagline">Lai visi būna laimingi!</p>
-      </div>
+  <div class="stories-container container background-blurred" aria-hidden="true">
+    <header class="stories-header glass-card">
+      <a href="/en" class="btn-back">← Back to main</a>
+      <h1>Stories of Jagannatha</h1>
+      <p class="subtitle">Discover the thousand-year spiritual legacy and stories of the Jagannatha Puri Temple</p>
     </header>
   </div>
 
   <!-- OVERLAY MODAL -->
   <div class="modal-wrapper" id="modal-container">
     <div class="modal-content glass-card" id="modal-content">
-      <a href="/" class="btn-close" aria-label="Uždaryti">✕</a>
+      <a href="/en/stories" class="btn-close" aria-label="Close">✕</a>
       
       <article class="prose">
-        <h2>#{entry.data.title}</h2>
+        <h2>{entry.data.title}</h2>
+        
+        {entry.data.youtubeId && (
+          <Youtube src={`https://www.youtube.com/embed/${entry.data.youtubeId}`} title={entry.data.title} />
+        )}
 
         {entry.data.image && (
           <div class="article-image-wrapper">
@@ -53,15 +56,15 @@ const { Content } = await render(entry);
 </BaseLayout>
 
 <script>
-  // Dynamic handling: click outside modal-content goes back to home page '/'
+  // Dynamic handling: click outside modal-content goes back to stories page '/en/stories'
   document.addEventListener('astro:page-load', () => {
     const wrapper = document.getElementById('modal-container');
     const content = document.getElementById('modal-content');
     if (wrapper && content) {
       wrapper.addEventListener('click', (e) => {
         if (!content.contains(e.target as Node)) {
-          const homeLink = document.querySelector('.btn-close') as HTMLAnchorElement;
-          if (homeLink) homeLink.click();
+          const closeLink = document.querySelector('.btn-close') as HTMLAnchorElement;
+          if (closeLink) closeLink.click();
         }
       });
     }
@@ -77,7 +80,7 @@ const { Content } = await render(entry);
     transition: all var(--transition-smooth);
   }
 
-  .homepage-container {
+  .stories-container {
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -85,10 +88,21 @@ const { Content } = await render(entry);
     padding-bottom: 4rem;
   }
 
-  .hero-header {
-    padding: 3rem;
+  .stories-header {
+    padding: 2.5rem;
     text-align: center;
-    border-radius: 28px;
+  }
+
+  .btn-back {
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
   }
 
   .prose h2 {
@@ -96,7 +110,7 @@ const { Content } = await render(entry);
     margin-bottom: 1.5rem;
     padding-bottom: 0.75rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    color: var(--color-saffron);
+    color: var(--color-gold);
   }
 
   .article-image-wrapper {

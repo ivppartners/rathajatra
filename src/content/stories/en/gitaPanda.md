@@ -1,0 +1,20 @@
+---
+title: "Gita Panda"
+image: "../../../assets/images/jagannatha.webp"
+---
+
+A very, very long time ago in Puri lived a panda named Arjuna Mishra. Every day he would read the entire Bhagavad-gita. Because he spent so much time studying the Gita and because of his unwavering faith, the local people nicknamed him Gita Panda. He was a great worshipper of Lord Jagannatha, a highly devoted soul. Whatever happened, he accepted everything as the Lord's will. Nothing could disturb Gita Panda.
+
+He was poor and lived on alms. Once a very heavy rain came and it rained in Puri for a whole week, so Gita Panda had no opportunity to go out to collect alms. Whatever small supplies he had, they ran out very quickly. He and his family were forced to fast, but Gita Panda did not worry about it. He happily spent his days reciting the Gita. He was happy that he could not go anywhere and therefore had more time to read the Gita.
+
+His wife became very angry with him. She began to scold him: "If you don't go to ask for alms, how do you think your family will survive? We have three children. They will all die if you don't go anywhere and bring something for them!" Gita Panda was undisturbed. He showed his wife a verse from the Bhagavad-gita: "But those who always worship Me with exclusive devotion, meditating on My transcendental form—to them I carry what they lack, and I preserve what they have."
+
+His behavior only made his wife even angrier. She waited for days, but her husband still brought nothing. He simply repeated: "We must rely on Him, because He said that He Himself will take care of everything." The wife wondered how much longer she would be able to wait. The children were extremely hungry due to the lack of food. Grabbing her husband's Bhagavad-gita, she turned to the verse her husband kept quoting and slashed that verse three times with a sharp object. Then, annoyed and angry, she went to sleep along with the children. After some time, Gita Panda also went to rest.
+
+After a while, Gita Panda's wife heard a knock on the door. She got out of bed and went to open the door. Standing outside were two very beautiful boys, carrying a huge amount of different ingredients for cooking. The brahmini was very surprised to see these two very beautiful boys. One of them was dark, and the other's skin was milk-white. The dark boy said to the brahmini: "Please, take this food, which was sent to you by Gita Panda's friend. Please, cook the food and eat your fill." The brahmini was very pleased to see these very beautiful boys, and when she heard his voice, her heart was filled with bliss. She felt very tender feelings for the boys. She asked them to wait until she prepared the food and eat the prasadam together. But the boy replied: "Yes, we would love to eat prasadam together with you and your husband, but my tongue is cut in three places and I cannot eat anything." Having said this, the boys left.
+
+Gita Panda's wife put all the products in the pantry and went to call her husband, to tell him about the good fortune that had befallen them. When Gita Panda came and saw that the entire pantry was filled with various products, he asked his wife: "Did you feed the boys? I hope you managed to thank them for their kindness and give them some prasadam." The wife replied: "I asked them to wait and eat something, but the dark boy said that someone had cut his tongue in three places, so he cannot eat."
+
+When Gita Panda heard this, he immediately understood that it was the Lord Himself. Since his wife had slashed the verse of the Gita three times—the words that came from the lotus mouth of the Lord—this action was reflected on His tongue. Gita Panda's wife realized that the Lord, in order to confirm His promise to care for those surrendered to Him, had brought the bhoga to His devotees Himself. Gita Panda along with his wife immediately set out for the Jagannatha temple to beg for forgiveness and thank Him for His mercy. When they approached the altar, they saw three red spots on Jagannatha's lips.
+
+*Translated from Bhakti Purusottama Swami's book "Sri Jagannath. The Pastimes of the Lord of the Universe"*

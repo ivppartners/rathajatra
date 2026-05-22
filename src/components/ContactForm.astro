@@ -1,22 +1,46 @@
 ---
+const currentLang = Astro.url.pathname.startsWith('/en') ? 'en' : 'lt';
+
+const translations = {
+  lt: {
+    name: 'Vardas',
+    namePlaceholder: 'Jūsų vardas...',
+    email: 'El. paštas',
+    emailPlaceholder: 'el.pastas@pavyzdys.lt',
+    message: 'Žinutė',
+    messagePlaceholder: 'Jūsų žinutė mums...',
+    submit: 'Siųsti žinutę'
+  },
+  en: {
+    name: 'Name',
+    namePlaceholder: 'Your name...',
+    email: 'Email',
+    emailPlaceholder: 'email@example.com',
+    message: 'Message',
+    messagePlaceholder: 'Your message to us...',
+    submit: 'Send message'
+  }
+};
+
+const t = translations[currentLang];
 ---
 <form id="contact-form" class="contact-form">
   <div class="field">
-    <label for="name">Vardas</label>
-    <input type="text" id="name" name="name" required placeholder="Jūsų vardas..." />
+    <label for="name">{t.name}</label>
+    <input type="text" id="name" name="name" required placeholder={t.namePlaceholder} />
   </div>
   
   <div class="field">
-    <label for="email">El. paštas</label>
-    <input type="email" id="email" name="email" required placeholder="el.pastas@pavyzdys.lt" />
+    <label for="email">{t.email}</label>
+    <input type="email" id="email" name="email" required placeholder={t.emailPlaceholder} />
   </div>
   
   <div class="field">
-    <label for="message">Žinutė</label>
-    <textarea id="message" name="message" rows="4" required placeholder="Jūsų žinutė mums..."></textarea>
+    <label for="message">{t.message}</label>
+    <textarea id="message" name="message" rows="4" required placeholder={t.messagePlaceholder}></textarea>
   </div>
   
-  <button type="submit" class="btn-premium" style="align-self: flex-start; margin-top: 0.5rem;">Siųsti žinutę</button>
+  <button type="submit" class="btn-premium" style="align-self: flex-start; margin-top: 0.5rem;">{t.submit}</button>
   
   <div id="form-status" class="form-status hidden"></div>
 </form>
@@ -26,13 +50,21 @@
   document.addEventListener('astro:page-load', () => {
     const form = document.getElementById('contact-form') as HTMLFormElement | null;
     const statusDiv = document.getElementById('form-status');
+    const isEn = window.location.pathname.startsWith('/en');
+
+    const clientT = {
+      sending: isEn ? 'Sending...' : 'Siunčiama...',
+      success: isEn ? 'Message sent successfully! Thank you.' : 'Žinutė sėkmingai išsiųsta! Ačiū jums.',
+      error: isEn ? 'Error sending message. Please try again.' : 'Klaida siunčiant žinutę. Bandykite dar kartą.',
+      networkError: isEn ? 'A network error occurred. Please check your internet connection.' : 'Įvyko tinklo klaida. Patikrinkite savo interneto ryšį.'
+    };
     
     if (form && statusDiv) {
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
         
         statusDiv.className = 'form-status info';
-        statusDiv.textContent = 'Siunčiama...';
+        statusDiv.textContent = clientT.sending;
         statusDiv.classList.remove('hidden');
         
         const formData = new FormData(form);
@@ -51,15 +83,15 @@
           
           if (response.ok) {
             statusDiv.className = 'form-status success';
-            statusDiv.textContent = result.message || 'Žinutė sėkmingai išsiųsta! Ačiū jums.';
+            statusDiv.textContent = result.message || clientT.success;
             form.reset();
           } else {
             statusDiv.className = 'form-status error';
-            statusDiv.textContent = result.message || 'Klaida siunčiant žinutę. Bandykite dar kartą.';
+            statusDiv.textContent = result.message || clientT.error;
           }
         } catch (error) {
           statusDiv.className = 'form-status error';
-          statusDiv.textContent = 'Įvyko tinklo klaida. Patikrinkite savo interneto ryšį.';
+          statusDiv.textContent = clientT.networkError;
         }
       });
     }

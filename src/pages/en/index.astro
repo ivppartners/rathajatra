@@ -1,20 +1,20 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import Youtube from "../components/Youtube.astro";
-import ContactForm from "../components/ContactForm.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Youtube from "../../components/Youtube.astro";
+import ContactForm from "../../components/ContactForm.astro";
 import { getCollection, render } from "astro:content";
 
-const allMain = (await getCollection("main")).filter((entry) => entry.id.startsWith("lt/"));
-const allTags = (await getCollection("tags")).filter((entry) => entry.id.startsWith("lt/"));
+const allMain = (await getCollection("main")).filter((entry) => entry.id.startsWith("en/"));
+const allTags = (await getCollection("tags")).filter((entry) => entry.id.startsWith("en/"));
 
 // Static menu items mapping to their respective pages (with Astro modal overlay views)
 const menuItems = [
-  { href: "/main/svente", label: "Šventė", slug: "svente" },
-  { href: "/main/programa", label: "Programa", slug: "programa" },
-  { href: "/main/motyvacija", label: "Motyvacija", slug: "motyvacija" },
-  { href: "/main/parama", label: "Parama", slug: "parama" },
-  { href: "/main/apie", label: "Apie mus", slug: "apie" },
-  { href: "/main/kontaktai", label: "Kontaktai", slug: "kontaktai" },
+  { href: "/en/main/svente", label: "Festival", slug: "svente" },
+  { href: "/en/main/programa", label: "Program", slug: "programa" },
+  { href: "/en/main/motyvacija", label: "Motivation", slug: "motyvacija" },
+  { href: "/en/main/parama", label: "Support", slug: "parama" },
+  { href: "/en/main/apie", label: "About us", slug: "apie" },
+  { href: "/en/main/kontaktai", label: "Contact", slug: "kontaktai" },
 ];
 
 const MENU_SLUGS = [
@@ -28,20 +28,18 @@ const MENU_SLUGS = [
 
 // Filter the main collection to only include separate blog-style posts (not static menu pages)
 const blogEntries = allMain.filter((entry) => {
-  const cleanId = entry.id.replace("lt/", "");
+  const cleanId = entry.id.replace("en/", "");
   return !MENU_SLUGS.includes(cleanId);
 });
 
 // Sort blog posts: newest at the top (by date descending, fallback to order descending)
 const sortedBlog = blogEntries.sort((a, b) => {
-  // Sort by date if both have dates
   if (a.data.date && b.data.date) {
     return new Date(b.data.date).getTime() - new Date(a.data.date).getTime();
   }
   if (a.data.date) return -1;
   if (b.data.date) return 1;
 
-  // Fallback to order descending (so higher order numbers like 7 go to the top)
   const orderA = a.data.order ?? 0;
   const orderB = b.data.order ?? 0;
   return orderB - orderA;
@@ -56,22 +54,22 @@ const blogWithContent = await Promise.all(
 );
 ---
 
-<BaseLayout title="Rathajatra Vilnius 2026 - Taikos formulė">
+<BaseLayout title="Rathajatra Vilnius 2026 - Formula of Peace">
   <div class="homepage-container container">
     <header class="hero-header glass-card">
       <div class="header-content">
-        <h1>Rathajatra — Taikos formulė</h1>
-        <h2 class="subtitle">Visatos Viešpaties šventė</h2>
-        <p class="tagline">Lai visi būna laimingi!</p>
+        <h1>Rathajatra — Formula of Peace</h1>
+        <h2 class="subtitle">Festival of the Lord of the Universe</h2>
+        <p class="tagline">May everyone be happy!</p>
 
         <div class="festival-info">
           <div class="info-badge">
             <span class="icon">📅</span>
-            <span>2026 m. birželio 21 d.</span>
+            <span>June 21, 2026</span>
           </div>
           <div class="info-badge">
             <span class="icon">📍</span>
-            <span>12 val. Lukiškių aikštėje — 15 val. Rotušės aikštėje</span>
+            <span>12:00 at Lukiškės Square — 15:00 at Town Hall Square</span>
           </div>
         </div>
       </div>
@@ -93,7 +91,7 @@ const blogWithContent = await Promise.all(
       <div class="trailer-wrapper">
         <Youtube
           src="https://www.youtube.com/embed/dVIMBFPXaNI"
-          title="Rathajatros vaizdo klipas"
+          title="Rathajatra Video Trailer"
         />
       </div>
     </header>
@@ -125,7 +123,7 @@ const blogWithContent = await Promise.all(
                   <Content />
                 </div>
 
-                {entry.id.replace("lt/", "") === "kontaktai" && <ContactForm />}
+                {entry.id.replace("en/", "") === "kontaktai" && <ContactForm />}
 
                 {entry.data.youtubeIds &&
                   entry.data.youtubeIds.map((id) => (
@@ -135,7 +133,7 @@ const blogWithContent = await Promise.all(
             ))
           ) : (
             <div class="no-posts glass-card">
-              <p>Naujų dienoraščio įrašų kol kas nėra. Sekite naujienas!</p>
+              <p>There are no new diary posts yet. Stay tuned!</p>
             </div>
           )
         }
@@ -143,50 +141,50 @@ const blogWithContent = await Promise.all(
     </section>
 
     <main class="cta-section">
-      <a href="/istorijos" class="btn-premium btn-cta">
-        📖 Apie Džagannathą (Istorijos)
+      <a href="/en/stories" class="btn-premium btn-cta">
+        📖 About Jagannatha (Stories)
       </a>
     </main>
 
     <footer class="tags-footer glass-card">
-      <h3>Atraskite daugiau temų:</h3>
+      <h3>Discover more topics:</h3>
       <div class="tag-cloud">
         {
           allTags.map((tag) => {
-            const cleanSlug = tag.id.replace("lt/", "");
+            const cleanSlug = tag.id.replace("en/", "");
             return (
-              <a href={`/tags/${cleanSlug}`} class="tag-link">
+              <a href={`/en/tags/${cleanSlug}`} class="tag-link">
                 #{tag.data.title}
               </a>
             );
           })
         }
-        <span class="tag-static">#AšNesuŠisKūnas</span>
-        <span class="tag-static">#Santarvė</span>
-        <span class="tag-static">#VienasDievasVisiems</span>
-        <span class="tag-static">#MeilėDievui</span>
-        <span class="tag-static">#MeilėArtimui</span>
-        <span class="tag-static">#Vienybė</span>
-        <span class="tag-static">#Vaišnavai</span>
-        <span class="tag-static">#KrišnosFestivaliai</span>
-        <span class="tag-static">#ŠventėMiestui</span>
-        <span class="tag-static">#joga</span>
-        <span class="tag-static">#Indija</span>
-        <span class="tag-static">#KarmosTaškai</span>
-        <span class="tag-static">#Atvirumas</span>
-        <span class="tag-static">#BeribėMalonė</span>
-        <span class="tag-static">#ŠluokDievuikKelią</span>
-        <span class="tag-static">#LaimingasŽmogus</span>
+        <span class="tag-static">#IAmNotThisBody</span>
+        <span class="tag-static">#Harmony</span>
+        <span class="tag-static">#OneGodForAll</span>
+        <span class="tag-static">#LoveOfGod</span>
+        <span class="tag-static">#LoveOfNeighbor</span>
+        <span class="tag-static">#Unity</span>
+        <span class="tag-static">#Vaishnavas</span>
+        <span class="tag-static">#KrishnaFestivals</span>
+        <span class="tag-static">#FestivalForTheCity</span>
+        <span class="tag-static">#yoga</span>
+        <span class="tag-static">#India</span>
+        <span class="tag-static">#KarmaPoints</span>
+        <span class="tag-static">#Openness</span>
+        <span class="tag-static">#LimitlessMercy</span>
+        <span class="tag-static">#SweepTheLordsPath</span>
+        <span class="tag-static">#HappyPerson</span>
         <span class="tag-static">#Mantra</span>
         <span class="tag-static">#meditation</span>
-        <span class="tag-static">#SavęsPažinimas</span>
-        <span class="tag-static">#Kirtana</span>
-        <span class="tag-static">#Sankirtana</span>
+        <span class="tag-static">#SelfRealization</span>
+        <span class="tag-static">#Kirtan</span>
+        <span class="tag-static">#Sankirtan</span>
         <span class="tag-static">#FoodForLife</span>
-        <span class="tag-static">#HighThinkingSimpleLiving</span>
-        <span class="tag-static">#AtgalNamoPasDievą</span>
-        <span class="tag-static">#Prasadas</span>
-        <span class="tag-static">#40MetųLietuvoje</span>
+        <span class="tag-static">#SimpleLivingHighThinking</span>
+        <span class="tag-static">#BackHomeToGodhead</span>
+        <span class="tag-static">#Prasadam</span>
+        <span class="tag-static">#40YearsInLithuania</span>
       </div>
 
       <div class="visitor-counter">
@@ -199,7 +197,7 @@ const blogWithContent = await Promise.all(
             width="88"
             height="31"
             src="https://www.hey.lt/count.php?id=rathayatra2023"
-            alt="Hey.lt lankytojų skaitliukas"
+            alt="Hey.lt Visitor Counter"
           />
         </a>
       </div>
@@ -311,27 +309,6 @@ const blogWithContent = await Promise.all(
   .blog-section {
     margin-top: 2rem;
     margin-bottom: 2rem;
-  }
-
-  .section-title {
-    font-family: var(--font-headline);
-    font-size: 2.75rem;
-    text-align: center;
-    margin-bottom: 2.5rem;
-    background: linear-gradient(135deg, var(--color-gold) 0%, #ff8c00 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    position: relative;
-  }
-
-  .section-title::after {
-    content: "✦ ✦ ✦";
-    display: block;
-    font-size: 1rem;
-    color: var(--color-saffron);
-    margin-top: 0.5rem;
-    opacity: 0.6;
-    letter-spacing: 0.25em;
   }
 
   /* Vertical Blog Feed */

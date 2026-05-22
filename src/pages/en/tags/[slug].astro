@@ -1,12 +1,12 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
   const entries = await getCollection('tags');
-  const ltEntries = entries.filter(entry => entry.id.startsWith('lt/'));
-  return ltEntries.map(entry => {
-    const slug = entry.id.replace('lt/', '');
+  const enEntries = entries.filter(entry => entry.id.startsWith('en/'));
+  return enEntries.map(entry => {
+    const slug = entry.id.replace('en/', '');
     return {
       params: { slug },
       props: { entry }
@@ -23,9 +23,9 @@ const { Content } = await render(entry);
   <div class="homepage-container container background-blurred" aria-hidden="true">
     <header class="hero-header glass-card">
       <div class="header-content">
-        <h1>Rathajatra — Taikos formulė</h1>
-        <h2 class="subtitle">Visatos Viešpaties šventė</h2>
-        <p class="tagline">Lai visi būna laimingi!</p>
+        <h1>Rathajatra — Formula of Peace</h1>
+        <h2 class="subtitle">Festival of the Lord of the Universe</h2>
+        <p class="tagline">May everyone be happy!</p>
       </div>
     </header>
   </div>
@@ -33,7 +33,7 @@ const { Content } = await render(entry);
   <!-- OVERLAY MODAL -->
   <div class="modal-wrapper" id="modal-container">
     <div class="modal-content glass-card" id="modal-content">
-      <a href="/" class="btn-close" aria-label="Uždaryti">✕</a>
+      <a href="/en" class="btn-close" aria-label="Close">✕</a>
       
       <article class="prose">
         <h2>#{entry.data.title}</h2>
@@ -53,7 +53,7 @@ const { Content } = await render(entry);
 </BaseLayout>
 
 <script>
-  // Dynamic handling: click outside modal-content goes back to home page '/'
+  // Dynamic handling: click outside modal-content goes back to home page '/en'
   document.addEventListener('astro:page-load', () => {
     const wrapper = document.getElementById('modal-container');
     const content = document.getElementById('modal-content');

@@ -1,46 +1,46 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
-const allStories = (await getCollection('stories')).filter(story => story.id.startsWith('lt/'));
+const allStories = (await getCollection('stories')).filter(story => story.id.startsWith('en/'));
 
-// Hardcode a mapping for beautiful Lithuanian descriptions/teasers for each story
+// Hardcode a mapping for beautiful English descriptions/teasers for each story
 const storyTeasers: Record<string, string> = {
-  bandhumohanty: "Jaudinanti istorija apie ištikimą atsidavusį Bandhu Mohanty, kuriam pats Viešpats Džagannatha paslapčia atnešė auksinį indą su maistu.",
-  bauri: "Paprasto žemos kastos atsidavusiojo Dasia Bauri tyros meilės istorija, kai Viešpats pats ištiesė ranką priimti jo siūlomą kokosą.",
-  charchika: "Madaḷā Pañjī metraščių pasakojimas apie galingą deivę Čarčiką ir jos dvasinius ryšius su Purio šventykla.",
-  epidemija: "Kaip Viešpats Džagannatha padėjo išgydyti Purio gyventojus nuo baisios epidemijos ir suteikė visiems savo apsaugą.",
-  ganesa: "Unikalus pasakojimas apie tai, kaip Viešpats Džagannatha pasirodė dramblio pavidalu (Hati Vesa), kad pradžiugintų Ganešos garbintoją.",
-  gitagovinda: "Šventojo poeto Džajadevos šedevras ir jo gilus mistinis ryšys su Džagannathos šventykla bei paties Viešpaties pagalba baigiant rašyti eiles.",
-  gitapanda: "Nuostabi istorija apie Gita Pandą, kuris giedojo Bhagavad-gitą, ir kaip Džagannatha stebuklingai apgynė jį ir jo tyrumą.",
-  hanumanas: "Apie ištikimąjį aštuonrankį Hanumaną, saugantį Purio šventyklos vartus nuo vandenyno bangų triukšmo.",
-  isdidusbhaktas: "Istorija apie karalių Prataparudrą, jo dvasinį nuolankumą ir kaip Viešpats sugriovė jo bei kitų atsidavusiųjų išdidumą.",
-  kilme: "Paslaptinga ir didinga legenda apie tai, kaip karalius Indradjumna pastatė šventyklą ir kaip atsirado šios unikalios, pusiau nebaigtos medinės formos.",
-  musulmonas: "Apie musulmoną bhaktą Salabegą, kurio meilė buvo tokia stipri, kad Džagannathos vežimas sustojo ir laukė jo kelio viduryje.",
-  puriolegendos: "Nacionalinės Geografijos dokumentinis filmas apie Purio Rathajatrą, šventyklos architektūros paslaptis ir jos dvasinę reikšmę.",
-  vagyste: "Intriguojantis pasakojimas apie tai, kaip brahmanai bandė slapta išgabenti ir paslėpti Viešpaties Džagannathos pavidalą."
+  bandhumohanty: "A touching story about the devoted Bandhu Mohanty, for whom Lord Jagannatha Himself secretly brought a golden plate with food.",
+  bauri: "The story of pure love of a simple low-caste devotee, Dasia Bauri, when the Lord Himself reached out His hand to accept his offering of a coconut.",
+  charchika: "A tale from the Madala Panji chronicles about the powerful goddess Charchika and her spiritual connections with the Puri temple.",
+  epidemija: "How Lord Jagannatha helped cure the residents of Puri from a terrible epidemic and granted everyone His protection.",
+  ganesa: "A unique tale of how Lord Jagannatha appeared in the form of an elephant (Hati Vesha) to delight a worshiper of Ganesha.",
+  gitagovinda: "The masterpiece of the holy poet Jayadeva and his deep mystical connection with the Jagannatha temple, featuring the Lord's own hand finishing his verses.",
+  gitapanda: "The wonderful story of Gita Panda, who chanted the Bhagavad-gita, and how Jagannatha miraculously defended him and his purity.",
+  hanumanas: "About the faithful eight-armed Hanuman, guarding the gates of the Puri temple from the sound of the ocean waves.",
+  isdidusbhaktas: "The story of King Prataparudra, his spiritual humility, and how the Lord shattered his pride and the pride of other devotees.",
+  kilme: "A mysterious and grand legend about how King Indradyumna built the temple and how these unique, semi-finished wooden forms originated.",
+  musulmonas: "About the Muslim devotee Salabega, whose love was so strong that Jagannatha's chariot stopped and waited for him in the middle of the road.",
+  puriolegendos: "A National Geographic documentary about the Puri Ratha-yatra, the secrets of the temple's architecture, and its spiritual significance.",
+  vagyste: "An intriguing tale of how the brahmanas tried to secretly transport and hide the deity form of Lord Jagannatha."
 };
 ---
 
-<BaseLayout title="Džagannathos istorijos ir legendos - Rathajatra Vilnius">
+<BaseLayout title="Stories and Legends of Jagannatha - Rathajatra Vilnius">
   <div class="stories-container container">
     <header class="stories-header glass-card">
-      <a href="/" class="btn-back">← Grįžti į pagrindinį</a>
-      <h1>Džagannathos istorijos</h1>
-      <p class="subtitle">Atraskite tūkstantmetį Purio šventyklos dvasinį palikimą ir pasakojimus</p>
+      <a href="/en" class="btn-back">← Back to main</a>
+      <h1>Stories of Jagannatha</h1>
+      <p class="subtitle">Discover the thousand-year spiritual legacy and stories of the Jagannatha Puri Temple</p>
     </header>
 
     <div class="grid-responsive">
       {allStories.map(story => {
-        const cleanSlug = story.id.replace('lt/', '');
+        const cleanSlug = story.id.replace('en/', '');
         const teaserKey = cleanSlug.toLowerCase();
         return (
-          <a href={`/stories/${cleanSlug}`} class="story-card glass-card">
+          <a href={`/en/stories/${cleanSlug}`} class="story-card glass-card">
             <div class="card-icon">🪔</div>
             <div class="card-body">
               <h3>{story.data.title}</h3>
-              <p>{storyTeasers[teaserKey] || "Skaityti nuostabią Viešpaties Džagannathos šventos žemės legendą..."}</p>
-              <span class="read-more">Skaityti istoriją →</span>
+              <p>{storyTeasers[teaserKey] || "Read the wonderful legend of the holy land of Lord Jagannatha..."}</p>
+              <span class="read-more">Read story →</span>
             </div>
           </a>
         );
@@ -49,12 +49,12 @@ const storyTeasers: Record<string, string> = {
 
     <footer class="stories-footer glass-card">
       <a class="citation-link" href="https://jagannathbaladevsubhadra.blogspot.com/" target="_blank" rel="noopener noreferrer">
-        🔗 Cituojama iš: https://jagannathbaladevsubhadra.blogspot.com/
+        🔗 Cited from: https://jagannathbaladevsubhadra.blogspot.com/
       </a>
       
       <div class="visitor-counter">
         <a target="_blank" rel="noopener noreferrer" href="https://www.hey.lt/details.php?id=rathayatra2023">
-          <img width="88" height="31" src="https://www.hey.lt/count.php?id=rathayatra2023" alt="Hey.lt lankytojų skaitliukas" />
+          <img width="88" height="31" src="https://www.hey.lt/count.php?id=rathayatra2023" alt="Hey.lt Visitor Counter" />
         </a>
       </div>
     </footer>

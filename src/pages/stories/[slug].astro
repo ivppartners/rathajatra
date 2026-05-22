@@ -5,10 +5,14 @@ import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
   const entries = await getCollection('stories');
-  return entries.map(entry => ({
-    params: { slug: entry.id },
-    props: { entry }
-  }));
+  const ltEntries = entries.filter(entry => entry.id.startsWith('lt/'));
+  return ltEntries.map(entry => {
+    const slug = entry.id.replace('lt/', '');
+    return {
+      params: { slug },
+      props: { entry }
+    };
+  });
 }
 
 const { entry } = Astro.props;

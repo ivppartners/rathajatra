@@ -1,14 +1,14 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import Youtube from '../../components/Youtube.astro';
-import ContactForm from '../../components/ContactForm.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Youtube from '../../../components/Youtube.astro';
+import ContactForm from '../../../components/ContactForm.astro';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
   const entries = await getCollection('main');
-  const ltEntries = entries.filter(entry => entry.id.startsWith('lt/'));
-  return ltEntries.map(entry => {
-    const slug = entry.id.replace('lt/', '');
+  const enEntries = entries.filter(entry => entry.id.startsWith('en/'));
+  return enEntries.map(entry => {
+    const slug = entry.id.replace('en/', '');
     return {
       params: { slug },
       props: { entry }
@@ -19,16 +19,14 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content } = await render(entry);
 
-const allTags = await getCollection('tags');
-
-// Define menu structure mapped to the content slugs
+// English navigation menu items
 const menuItems = [
-  { href: '/main/svente', label: 'Šventė', slug: 'svente' },
-  { href: '/main/programa', label: 'Programa', slug: 'programa' },
-  { href: '/main/motyvacija', label: 'Motyvacija', slug: 'motyvacija' },
-  { href: '/main/parama', label: 'Parama', slug: 'parama' },
-  { href: '/main/apie', label: 'Apie mus', slug: 'apie' },
-  { href: '/main/kontaktai', label: 'Kontaktai', slug: 'kontaktai' }
+  { href: '/en/main/svente', label: 'Festival', slug: 'svente' },
+  { href: '/en/main/programa', label: 'Program', slug: 'programa' },
+  { href: '/en/main/motyvacija', label: 'Motivation', slug: 'motyvacija' },
+  { href: '/en/main/parama', label: 'Support', slug: 'parama' },
+  { href: '/en/main/apie', label: 'About us', slug: 'apie' },
+  { href: '/en/main/kontaktai', label: 'Contact', slug: 'kontaktai' }
 ];
 ---
 
@@ -37,19 +35,19 @@ const menuItems = [
   <div class="homepage-container container background-blurred" aria-hidden="true">
     <header class="hero-header glass-card">
       <div class="header-content">
-        <h1>Rathajatra — Taikos formulė</h1>
-        <h2 class="subtitle">Visatos Viešpaties šventė</h2>
-        <p class="tagline">Lai visi būna laimingi!</p>
+        <h1>Rathajatra — Formula of Peace</h1>
+        <h2 class="subtitle">Festival of the Lord of the Universe</h2>
+        <p class="tagline">May everyone be happy!</p>
         <div class="festival-info">
-          <div class="info-badge">📅 2026 m. birželio 21 d.</div>
-          <div class="info-badge">📍 12 val. Lukiškių aikštėje</div>
+          <div class="info-badge">📅 June 21, 2026</div>
+          <div class="info-badge">📍 12:00 at Lukiškės Square</div>
         </div>
       </div>
       <nav class="main-nav">
         <ul>
           {menuItems.map(item => (
             <li>
-              <a href={item.href} class={`nav-item ${item.slug === entry.id.replace('lt/', '') ? 'active' : ''}`}>
+              <a href={item.href} class={`nav-item ${item.slug === entry.id.replace('en/', '') ? 'active' : ''}`}>
                 ✦ {item.label}
               </a>
             </li>
@@ -62,7 +60,7 @@ const menuItems = [
   <!-- OVERLAY MODAL -->
   <div class="modal-wrapper" id="modal-container">
     <div class="modal-content glass-card" id="modal-content">
-      <a href="/" class="btn-close" aria-label="Uždaryti">✕</a>
+      <a href="/en" class="btn-close" aria-label="Close">✕</a>
       
       <article class="prose">
         <h2>{entry.data.title}</h2>
@@ -81,7 +79,7 @@ const menuItems = [
           <Content />
         </div>
 
-        {entry.id.replace('lt/', '') === 'kontaktai' && (
+        {entry.id.replace('en/', '') === 'kontaktai' && (
           <ContactForm />
         )}
         
@@ -94,14 +92,13 @@ const menuItems = [
 </BaseLayout>
 
 <script>
-  // Dynamic handling: click outside modal-content goes back to home page '/'
+  // Dynamic handling: click outside modal-content goes back to home page '/en'
   document.addEventListener('astro:page-load', () => {
     const wrapper = document.getElementById('modal-container');
     const content = document.getElementById('modal-content');
     if (wrapper && content) {
       wrapper.addEventListener('click', (e) => {
         if (!content.contains(e.target as Node)) {
-          // Navigate to home page using standard Astro routing
           const homeLink = document.querySelector('.btn-close') as HTMLAnchorElement;
           if (homeLink) homeLink.click();
         }
