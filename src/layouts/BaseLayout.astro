@@ -57,7 +57,7 @@ if (currentLang === 'en') {
     <!-- Premium Glassmorphic Language Switcher -->
     <div class="lang-switcher">
       <a href={switchUrl} class="lang-btn" aria-label={currentLang === 'lt' ? 'Switch to English' : 'Perjungti į lietuvių kalbą'}>
-        <span class="lang-icon">🌐</span>
+        <span class="lang-icon">{currentLang === 'lt' ? '🇺🇸' : '🇱🇹'}</span>
         <span class="lang-text">{currentLang === 'lt' ? 'English' : 'Lietuvių'}</span>
       </a>
     </div>
