@@ -1,7 +1,7 @@
 ---
 title: "2026-05-22"
 date: 2026-05-22
-image: "../../../assets/images/parama.jpg"
+image: "../../../assets/images/contributeEn.png"
 ---
 
 Only 30 days left until the Rathayatra festival… ✨  
@@ -21,4 +21,5 @@ Swedbank: LT177300010118511925
 SEB: LT107044060001303307  
 PaySera: EVP6810001965033  
 Or simply by clicking this link: https://www.paypal.com/donate/...  
+Also you can contribute using [Contribee](https://contribee.com/lt/rathajatravilnius/post/102072)
 🙏 We invite you to become a part of this beautiful celebration and together create something special for Vilnius.

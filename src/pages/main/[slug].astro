@@ -1,17 +1,17 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import Youtube from '../../components/Youtube.astro';
-import ContactForm from '../../components/ContactForm.astro';
-import { getCollection, render } from 'astro:content';
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Youtube from "../../components/Youtube.astro";
+import ContactForm from "../../components/ContactForm.astro";
+import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
-  const entries = await getCollection('main');
-  const ltEntries = entries.filter(entry => entry.id.startsWith('lt/'));
-  return ltEntries.map(entry => {
-    const slug = entry.id.replace('lt/', '');
+  const entries = await getCollection("main");
+  const ltEntries = entries.filter((entry) => entry.id.startsWith("lt/"));
+  return ltEntries.map((entry) => {
+    const slug = entry.id.replace("lt/", "");
     return {
       params: { slug },
-      props: { entry }
+      props: { entry },
     };
   });
 }
@@ -19,16 +19,16 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content } = await render(entry);
 
-const allTags = await getCollection('tags');
+const allTags = await getCollection("tags");
 
 // Define menu structure mapped to the content slugs
 const menuItems = [
-  { href: '/main/svente', label: 'Šventė', slug: 'svente' },
-  { href: '/main/programa', label: 'Programa', slug: 'programa' },
-  { href: '/main/motyvacija', label: 'Motyvacija', slug: 'motyvacija' },
-  { href: '/main/parama', label: 'Parama', slug: 'parama' },
-  { href: '/main/apie', label: 'Apie mus', slug: 'apie' },
-  { href: '/main/kontaktai', label: 'Kontaktai', slug: 'kontaktai' }
+  { href: "/main/svente", label: "Šventė", slug: "svente" },
+  { href: "/main/programa", label: "Programa", slug: "programa" },
+  { href: "/main/motyvacija", label: "Motyvacija", slug: "motyvacija" },
+  { href: "/main/parama", label: "Parama", slug: "parama" },
+  { href: "/main/apie", label: "Apie mus", slug: "apie" },
+  { href: "/main/kontaktai", label: "Kontaktai", slug: "kontaktai" },
 ];
 ---
 
@@ -37,7 +37,7 @@ const menuItems = [
   <div class="homepage-container container background-blurred" aria-hidden="true">
     <header class="hero-header glass-card">
       <div class="header-content">
-        <h1>Rathajatra — Taikos formulė</h1>
+        <h1>Rathajatra — Kultūrų įvairovė mus praturtina</h1>
         <h2 class="subtitle">Visatos Viešpaties šventė</h2>
         <p class="tagline">Lai visi būna laimingi!</p>
         <div class="festival-info">
@@ -47,13 +47,15 @@ const menuItems = [
       </div>
       <nav class="main-nav">
         <ul>
-          {menuItems.map(item => (
-            <li>
-              <a href={item.href} class={`nav-item ${item.slug === entry.id.replace('lt/', '') ? 'active' : ''}`}>
-                ✦ {item.label}
-              </a>
-            </li>
-          ))}
+          {
+            menuItems.map((item) => (
+              <li>
+                <a href={item.href} class={`nav-item ${item.slug === entry.id.replace("lt/", "") ? "active" : ""}`}>
+                  ✦ {item.label}
+                </a>
+              </li>
+            ))
+          }
         </ul>
       </nav>
     </header>
@@ -63,31 +65,31 @@ const menuItems = [
   <div class="modal-wrapper" id="modal-container">
     <div class="modal-content glass-card" id="modal-content">
       <a href="/" class="btn-close" aria-label="Uždaryti">✕</a>
-      
+
       <article class="prose">
         <h2>{entry.data.title}</h2>
-        
-        {entry.data.youtubeId && (
-          <Youtube src={`https://www.youtube.com/embed/${entry.data.youtubeId}`} title={entry.data.title} />
-        )}
 
-        {entry.data.image && (
-          <div class="article-image-wrapper">
-            <img src={entry.data.image.src} alt={entry.data.title} class="article-image" />
-          </div>
-        )}
+        {
+          entry.data.youtubeId && (
+            <Youtube src={`https://www.youtube.com/embed/${entry.data.youtubeId}`} title={entry.data.title} />
+          )
+        }
+
+        {
+          entry.data.image && (
+            <div class="article-image-wrapper">
+              <img src={entry.data.image.src} alt={entry.data.title} class="article-image" />
+            </div>
+          )
+        }
 
         <div class="markdown-body">
           <Content />
         </div>
 
-        {entry.id.replace('lt/', '') === 'kontaktai' && (
-          <ContactForm />
-        )}
-        
-        {entry.data.youtubeIds && entry.data.youtubeIds.map(id => (
-          <Youtube id={id} title={entry.data.title} />
-        ))}
+        {entry.id.replace("lt/", "") === "kontaktai" && <ContactForm />}
+
+        {entry.data.youtubeIds && entry.data.youtubeIds.map((id) => <Youtube id={id} title={entry.data.title} />)}
       </article>
     </div>
   </div>
@@ -95,14 +97,14 @@ const menuItems = [
 
 <script>
   // Dynamic handling: click outside modal-content goes back to home page '/'
-  document.addEventListener('astro:page-load', () => {
-    const wrapper = document.getElementById('modal-container');
-    const content = document.getElementById('modal-content');
+  document.addEventListener("astro:page-load", () => {
+    const wrapper = document.getElementById("modal-container");
+    const content = document.getElementById("modal-content");
     if (wrapper && content) {
-      wrapper.addEventListener('click', (e) => {
+      wrapper.addEventListener("click", (e) => {
         if (!content.contains(e.target as Node)) {
           // Navigate to home page using standard Astro routing
-          const homeLink = document.querySelector('.btn-close') as HTMLAnchorElement;
+          const homeLink = document.querySelector(".btn-close") as HTMLAnchorElement;
           if (homeLink) homeLink.click();
         }
       });

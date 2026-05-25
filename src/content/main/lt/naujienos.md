@@ -1,7 +1,7 @@
 ---
 title: "2026-05-22"
 date: 2026-05-22
-image: "../../../assets/images/parama.jpg"
+image: "../../../assets/images/contribute.png"
 ---
 Iki Rathajatros šventės liko vos 30 dienų… ✨  
 Ir šiandien norime nuoširdžiai kreiptis į kiekvieną iš Jūsų. 🙏  
@@ -20,4 +20,5 @@ Swedbank banke LT177300010118511925
 SEB banke LT107044060001303307  
 PaySera EVP6810001965033  
 Arba tiesiog paspaudę šią nuorodą: https://www.paypal.com/donate/...  
+Taip pat galite paremti per [Contribee platformą](https://contribee.com/lt/rathajatravilnius/post/102072)
 🙏 Kviečiame tapti šios gražios šventės dalimi ir kartu sukurti kažką ypatingo Vilniui.

@@ -17,14 +17,7 @@ const menuItems = [
   { href: "/main/kontaktai", label: "Kontaktai", slug: "kontaktai" },
 ];
 
-const MENU_SLUGS = [
-  "svente",
-  "programa",
-  "motyvacija",
-  "parama",
-  "apie",
-  "kontaktai",
-];
+const MENU_SLUGS = ["svente", "programa", "motyvacija", "parama", "apie", "kontaktai"];
 
 // Filter the main collection to only include separate blog-style posts (not static menu pages)
 const blogEntries = allMain.filter((entry) => {
@@ -54,14 +47,19 @@ const blogWithContent = await Promise.all(
     return { entry, Content };
   }),
 );
+
+// Fetch and render program content
+const programaEntry = allMain.find((entry) => entry.id === "lt/programa");
+const renderedPrograma = programaEntry ? await render(programaEntry) : null;
+const ProgramContent = renderedPrograma ? renderedPrograma.Content : null;
 ---
 
-<BaseLayout title="Rathajatra Vilnius 2026 - Taikos formulė">
+<BaseLayout title="Rathajatra Vilnius 2026 - Kultūrų įvairovė mus praturtina">
   <div class="homepage-container container">
     <header class="hero-header glass-card">
       <div class="header-content">
-        <h1>Rathajatra — Taikos formulė</h1>
-        <h2 class="subtitle">Visatos Viešpaties šventė</h2>
+        <h1>Rathajatra</h1>
+        <h2>Kultūrų įvairovė mus praturtina</h2>
         <p class="tagline">Lai visi būna laimingi!</p>
 
         <div class="festival-info">
@@ -90,12 +88,18 @@ const blogWithContent = await Promise.all(
         </ul>
       </nav>
 
-      <div class="trailer-wrapper">
-        <Youtube
-          src="https://www.youtube.com/embed/dVIMBFPXaNI"
-          title="Rathajatros vaizdo klipas"
-        />
-      </div>
+      {
+        ProgramContent && (
+          <div class="program-wrapper">
+            <div class="program-header">
+              <h3>✦ RENGINIO PROGRAMA ✦</h3>
+            </div>
+            <div class="markdown-body program-body">
+              <ProgramContent />
+            </div>
+          </div>
+        )
+      }
     </header>
 
     <!-- BLOG SECTION -->
@@ -107,17 +111,11 @@ const blogWithContent = await Promise.all(
               <article class="feed-card glass-card" id={entry.id}>
                 <h3>{entry.data.title}</h3>
 
-                {entry.data.youtubeId && (
-                  <Youtube id={entry.data.youtubeId} title={entry.data.title} />
-                )}
+                {entry.data.youtubeId && <Youtube id={entry.data.youtubeId} title={entry.data.title} />}
 
                 {entry.data.image && (
                   <div class="article-image-wrapper">
-                    <img
-                      src={entry.data.image.src}
-                      alt={entry.data.title}
-                      class="article-image"
-                    />
+                    <img src={entry.data.image.src} alt={entry.data.title} class="article-image" />
                   </div>
                 )}
 
@@ -128,9 +126,7 @@ const blogWithContent = await Promise.all(
                 {entry.id.replace("lt/", "") === "kontaktai" && <ContactForm />}
 
                 {entry.data.youtubeIds &&
-                  entry.data.youtubeIds.map((id) => (
-                    <Youtube id={id} title={entry.data.title} />
-                  ))}
+                  entry.data.youtubeIds.map((id) => <Youtube id={id} title={entry.data.title} />)}
               </article>
             ))
           ) : (
@@ -143,9 +139,7 @@ const blogWithContent = await Promise.all(
     </section>
 
     <main class="cta-section">
-      <a href="/istorijos" class="btn-premium btn-cta">
-        📖 Apie Džagannathą (Istorijos)
-      </a>
+      <a href="/istorijos" class="btn-premium btn-cta"> 📖 Apie Džagannathą (Istorijos) </a>
     </main>
 
     <footer class="tags-footer glass-card">
@@ -190,11 +184,7 @@ const blogWithContent = await Promise.all(
       </div>
 
       <div class="visitor-counter">
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://www.hey.lt/details.php?id=rathayatra2023"
-        >
+        <a target="_blank" rel="noopener noreferrer" href="https://www.hey.lt/details.php?id=rathayatra2023">
           <img
             width="88"
             height="31"
@@ -302,9 +292,41 @@ const blogWithContent = await Promise.all(
     margin-right: 0.25rem;
   }
 
-  .trailer-wrapper {
+  .program-wrapper {
     max-width: 700px;
-    margin: 0 auto;
+    margin: 2rem auto 0 auto;
+    padding: 2.25rem;
+    background: rgba(18, 22, 28, 0.4);
+    border: 1px solid rgba(255, 106, 0, 0.18);
+    border-radius: 20px;
+    text-align: left;
+    transition: all var(--transition-bounce);
+  }
+
+  .program-wrapper:hover {
+    border-color: rgba(255, 106, 0, 0.35);
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-2px);
+  }
+
+  .program-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .program-header h3 {
+    font-family: var(--font-title);
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-saffron) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+  }
+
+  .program-body {
+    line-height: 1.8;
   }
 
   /* Blog Section Header */
