@@ -1,7 +1,6 @@
 ---
 title: "Motyvacija"
 order: 3
-youtubeId: "wy55mL2QG7A"
 youtubeIds:
   - "wy55mL2QG7A"
   - "qNhym8rVbgw"

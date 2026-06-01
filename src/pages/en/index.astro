@@ -17,14 +17,7 @@ const menuItems = [
   { href: "/en/main/kontaktai", label: "Contact", slug: "kontaktai" },
 ];
 
-const MENU_SLUGS = [
-  "svente",
-  "programa",
-  "motyvacija",
-  "parama",
-  "apie",
-  "kontaktai",
-];
+const MENU_SLUGS = ["svente", "programa", "motyvacija", "parama", "apie", "kontaktai"];
 
 // Filter the main collection to only include separate blog-style posts (not static menu pages)
 const blogEntries = allMain.filter((entry) => {
@@ -59,12 +52,12 @@ const renderedPrograma = programaEntry ? await render(programaEntry) : null;
 const ProgramContent = renderedPrograma ? renderedPrograma.Content : null;
 ---
 
-<BaseLayout title="Rathajatra Vilnius 2026 - Formula of Peace">
+<BaseLayout title="Rathayatra Vilnius 2026 - Cultural diversity enriches us">
   <div class="homepage-container container">
     <header class="hero-header glass-card">
       <div class="header-content">
-        <h1>Rathajatra — Formula of Peace</h1>
-        <h2 class="subtitle">Festival of the Lord of the Universe</h2>
+        <h1>Rathayatra</h1>
+        <h2>Cultural diversity enriches us</h2>
         <p class="tagline">May everyone be happy!</p>
 
         <div class="festival-info">
@@ -116,17 +109,11 @@ const ProgramContent = renderedPrograma ? renderedPrograma.Content : null;
               <article class="feed-card glass-card" id={entry.id}>
                 <h3>{entry.data.title}</h3>
 
-                {entry.data.youtubeId && (
-                  <Youtube id={entry.data.youtubeId} title={entry.data.title} />
-                )}
+                {entry.data.youtubeId && <Youtube id={entry.data.youtubeId} title={entry.data.title} />}
 
                 {entry.data.image && (
                   <div class="article-image-wrapper">
-                    <img
-                      src={entry.data.image.src}
-                      alt={entry.data.title}
-                      class="article-image"
-                    />
+                    <img src={entry.data.image.src} alt={entry.data.title} class="article-image" />
                   </div>
                 )}
 
@@ -137,9 +124,7 @@ const ProgramContent = renderedPrograma ? renderedPrograma.Content : null;
                 {entry.id.replace("en/", "") === "kontaktai" && <ContactForm />}
 
                 {entry.data.youtubeIds &&
-                  entry.data.youtubeIds.map((id) => (
-                    <Youtube id={id} title={entry.data.title} />
-                  ))}
+                  entry.data.youtubeIds.map((id) => <Youtube id={id} title={entry.data.title} />)}
               </article>
             ))
           ) : (
@@ -152,9 +137,7 @@ const ProgramContent = renderedPrograma ? renderedPrograma.Content : null;
     </section>
 
     <main class="cta-section">
-      <a href="/en/stories" class="btn-premium btn-cta">
-        📖 About Jagannatha (Stories)
-      </a>
+      <a href="/en/stories" class="btn-premium btn-cta"> 📖 About Jagannatha (Stories) </a>
     </main>
 
     <footer class="tags-footer glass-card">
@@ -199,11 +182,7 @@ const ProgramContent = renderedPrograma ? renderedPrograma.Content : null;
       </div>
 
       <div class="visitor-counter">
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://www.hey.lt/details.php?id=rathayatra2023"
-        >
+        <a target="_blank" rel="noopener noreferrer" href="https://www.hey.lt/details.php?id=rathayatra2023">
           <img
             width="88"
             height="31"

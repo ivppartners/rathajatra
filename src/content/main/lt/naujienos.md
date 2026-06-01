@@ -3,17 +3,20 @@ title: "2026-05-22"
 date: 2026-05-22
 image: "../../../assets/images/contribute.png"
 ---
-Iki Rathajatros šventės liko vos 30 dienų… ✨  
-Ir šiandien norime nuoširdžiai kreiptis į kiekvieną iš Jūsų. 🙏  
-Rathajatros šventė Vilniuje nėra komercinis renginys. Ji vyksta tik žmonių gerumo, palaikymo ir aukų dėka. Kiekviena scena, kiekviena vaišė, muzika, eisena, dekoracijos ir visa šventinė atmosfera atsiranda todėl, kad kažkas nusprendžia prisidėti. ❤️  
+Iki Rathajatros šventės liko vos 20 dienų…
+Ir šiandien norime nuoširdžiai kreiptis į kiekvieną iš Jūsų. 🙏
+Rathajatros šventė Vilniuje nėra komercinis renginys. Ji vyksta tik žmonių gerumo, palaikymo ir aukų dėka. Kiekviena scena, kiekviena vaišė, muzika, eisena, dekoracijos ir visa šventinė atmosfera atsiranda todėl, kad kažkas nusprendžia prisidėti.
 Šių metų Rathajatros biudžetas – 13 000 EUR.  
-Šiuo metu jau surinkta 5 100 EUR.  
-Tai reiškia, kad dar turime surinkti 7 900 EUR.  
-Iki šventės liko tik 30 dienų, todėl tam, kad pasiektume tikslą, kasdien turime surinkti bent po 190 EUR.  
-Mes labai norime sukurti gražią, jaukią ir įkvepiančią šventę visiems – su koncertu, kultūrine programa, šventine eisena, vegetariškomis vaišėmis ir atmosfera, kuri paliečia žmonių širdis. 🌸  
+Šiuo metu jau surinkta 7 600 EUR.  
+Tai reiškia, kad dar turime surinkti 5 400 EUR.  
+
+Iki šventės liko tik 20 dienų, todėl tam, kad pasiektume tikslą, kasdien turime surinkti bent po 270 EUR.  
+Mes labai norime sukurti gražią, jaukią ir įkvepiančią šventę visiems – su koncertu, kultūrine programa, šventine eisena, vegetariškomis vaišėmis ir atmosfera, kuri paliečia žmonių širdis.  
 Tačiau be Jūsų prisidėjimo tai tiesiog neįvyks.  
+
 Todėl labai prašome – jei tik galite, prisidėkite savo auka. Nesvarbu, ar tai 5, 10, 50 ar daugiau eurų – kiekviena auka yra labai svarbi ir priartina mus prie šventės įgyvendinimo. 🙏  
-Paremti Rathajatros 2026 šventę  
+
+**Paremti Rathajatros 2026 šventę**  
 (mokėjimo paskirtis: Rathayatra 2026):  
 Gavėjas: Vilniaus Krišnos sąmonės religinė bendruomenė  
 Swedbank banke LT177300010118511925  

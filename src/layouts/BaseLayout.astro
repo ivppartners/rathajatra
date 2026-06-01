@@ -1,39 +1,42 @@
 ---
-import { ClientRouter } from 'astro:transitions';
-import '../styles/global.css';
+import { ClientRouter } from "astro:transitions";
+import "../styles/global.css";
 
 interface Props {
   title: string;
   description?: string;
 }
 
-const { title, description = "Rathajatra - Visatos Viešpaties vežimų šventė Vilniuje. Vilniuje, 2026 m. birželio 21 d." } = Astro.props;
+const {
+  title,
+  description = "Rathajatra - Visatos Viešpaties vežimų šventė Vilniuje. Vilniuje, 2026 m. birželio 21 d.",
+} = Astro.props;
 
-const currentLang = Astro.url.pathname.startsWith('/en') ? 'en' : 'lt';
+const currentLang = Astro.url.pathname.startsWith("/en") ? "en" : "lt";
 const pathname = Astro.url.pathname;
 
-let switchUrl = '';
-if (currentLang === 'en') {
-  if (pathname === '/en' || pathname === '/en/') {
-    switchUrl = '/';
-  } else if (pathname.startsWith('/en/stories')) {
-    switchUrl = pathname.replace('/en/stories', '/istorijos');
+let switchUrl = "";
+if (currentLang === "en") {
+  if (pathname === "/en" || pathname === "/en/") {
+    switchUrl = "/";
+  } else if (pathname.startsWith("/en/stories")) {
+    switchUrl = pathname.replace("/en/stories", "/istorijos");
   } else {
-    switchUrl = pathname.replace(/^\/en/, '') || '/';
+    switchUrl = pathname.replace(/^\/en/, "") || "/";
   }
 } else {
-  if (pathname === '/' || pathname === '') {
-    switchUrl = '/en/';
-  } else if (pathname.startsWith('/istorijos')) {
-    switchUrl = pathname.replace('/istorijos', '/en/stories');
+  if (pathname === "/" || pathname === "") {
+    switchUrl = "/en/";
+  } else if (pathname.startsWith("/istorijos")) {
+    switchUrl = pathname.replace("/istorijos", "/en/stories");
   } else {
-    const cleanPath = pathname.startsWith('/') ? pathname : `/${pathname}`;
+    const cleanPath = pathname.startsWith("/") ? pathname : `/${pathname}`;
     switchUrl = `/en${cleanPath}`;
   }
 }
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang={currentLang}>
   <head>
     <meta charset="utf-8" />
@@ -41,24 +44,28 @@ if (currentLang === 'en') {
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    
+
     <!-- SEO & Open Graph Tags -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Rathajatra Vilnius" />
-    
+
     <ClientRouter />
   </head>
   <body>
     <!-- Premium background glowing aura decoration -->
     <div class="aura-bg" aria-hidden="true" transition:persist="aura-background"></div>
-    
+
     <!-- Premium Glassmorphic Language Switcher -->
     <div class="lang-switcher">
-      <a href={switchUrl} class="lang-btn" aria-label={currentLang === 'lt' ? 'Switch to English' : 'Perjungti į lietuvių kalbą'}>
-        <span class="lang-icon">{currentLang === 'lt' ? '🇺🇸' : '🇱🇹'}</span>
-        <span class="lang-text">{currentLang === 'lt' ? 'English' : 'Lietuvių'}</span>
+      <a
+        href={switchUrl}
+        class="lang-btn"
+        aria-label={currentLang === "lt" ? "Switch to English" : "Perjungti į lietuvių kalbą"}
+      >
+        <span class="lang-icon">{currentLang === "lt" ? "🇺🇸" : "🇱🇹"}</span>
+        <span class="lang-text">{currentLang === "lt" ? "English" : "Lietuvių"}</span>
       </a>
     </div>
 
@@ -91,7 +98,10 @@ if (currentLang === 'en') {
     font-size: 0.9rem;
     letter-spacing: 0.05em;
     cursor: pointer;
-    transition: transform var(--transition-bounce), border-color var(--transition-smooth), box-shadow var(--transition-smooth);
+    transition:
+      transform var(--transition-bounce),
+      border-color var(--transition-smooth),
+      box-shadow var(--transition-smooth);
     text-shadow: none;
     text-decoration: none;
   }
@@ -124,4 +134,3 @@ if (currentLang === 'en') {
     }
   }
 </style>
-
