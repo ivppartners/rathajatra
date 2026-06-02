@@ -23,5 +23,5 @@ Swedbank banke LT177300010118511925
 SEB banke LT107044060001303307  
 PaySera EVP6810001965033  
 Arba tiesiog paspaudę šią nuorodą: https://www.paypal.com/donate/...  
-Taip pat galite paremti per [Contribee platformą](https://contribee.com/lt/rathajatravilnius/post/102072)
+Taip pat galite paremti per <a href="https://contribee.com/lt/rathajatravilnius/post/102072" target="_blank" rel="noopener noreferrer">Contribee platformą</a>
 🙏 Kviečiame tapti šios gražios šventės dalimi ir kartu sukurti kažką ypatingo Vilniui.

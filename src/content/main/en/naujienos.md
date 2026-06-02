@@ -22,5 +22,5 @@ Swedbank: LT177300010118511925
 SEB: LT107044060001303307
 PaySera: EVP6810001965033
 Or simply by clicking this link: https://www.paypal.com/donate/...  
-Also you can contribute using [Contribee](https://contribee.com/lt/rathajatravilnius/post/102072)
+Also you can contribute using <a href="https://contribee.com/lt/rathajatravilnius/post/102072" target="_blank" rel="noopener noreferrer">Contribee</a>
 We invite you to become a part of this beautiful celebration and together create something special for Vilnius.

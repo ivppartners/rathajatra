@@ -11,4 +11,4 @@ This festival is organized solely through the support of the community. Every co
 
 If you value community, culture, and positive city celebrations, we invite you to contribute any amount. Together, we are creating a festival for the entire city!
 
-[Support the Rathayatra festival on Contribee here](https://contribee.com/lt/rathajatravilnius/post/102072)
+<a href="https://contribee.com/lt/rathajatravilnius/post/102072" target="_blank" rel="noopener noreferrer">Support the Rathayatra festival on Contribee here</a>

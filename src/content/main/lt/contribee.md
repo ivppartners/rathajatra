@@ -10,4 +10,4 @@ Rathajatra – tai spalvinga vasaros šventė Vilniaus centre, suburianti tūkst
 
 Jeigu jums artima bendrystės, kultūros ir pozityvios miesto šventės idėja – kviečiame prisidėti bet kokia suma. Kartu kuriame šventę visam miestui!
 
-[Paremkite Rathajatros šventę per Contribee čia](https://contribee.com/lt/rathajatravilnius/post/102072)
+<a href="https://contribee.com/lt/rathajatravilnius/post/102072" target="_blank" rel="noopener noreferrer">Paremkite Rathajatros šventę per Contribee čia</a>
