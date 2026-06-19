@@ -6,16 +6,15 @@ image: "../../../assets/images/contributeEn.png"
 
 2026-05-22
 
-Only 20 days left until the Rathayatra festival…
+Only few days left until the Rathayatra festival…
 
 And today we want to sincerely appeal to each of you. 🙏
 
 The Rathayatra festival in Vilnius is not a commercial event. It happens only thanks to people's kindness, support, and donations. Every stage, every feast, music, procession, decorations, and the entire festive atmosphere exists because someone decides to contribute.
 
 This year's Rathayatra budget – EUR 13,000.  
-Currently raised – EUR 7,600.  
-This means we still need to raise – EUR 5,400.  
-With only 20 days left until the festival, to reach our goal, we need to collect at least EUR 270 every day.  
+Currently raised – EUR 10,200.  
+With only few days left until the festival, to reach our goal, we need to collect at least EUR 270 every day.  
 
 We really want to create a beautiful, warm, and inspiring festival for everyone – with a concert, cultural program, festive procession, vegetarian feasts, and an atmosphere that touches people's hearts.
 
